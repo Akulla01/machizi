@@ -1,0 +1,16 @@
+
+#follower-scroll::-webkit-scrollbar{
+	display:none;
+}
+
+body::-webkit-scrollbar{
+	display:block;
+	width: 10px;
+	padding: 2px;
+	border-radius:20px;
+}
+
+body::-webkit-scrollbar-thumb{
+	background:#3D3A3A;
+	border-radius: 20px;
+}

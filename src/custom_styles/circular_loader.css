@@ -1,0 +1,12 @@
+
+#loader_circular{
+	border-radius: 100vh;
+	animation: spinner 400ms linear forwards infinite;
+}
+
+@keyframes spinner{
+	0%{border-top-color: #2CCA90;}
+	30%{border-right-color: #2CCA90;}
+	80%{border-bottom-color: #2CCA90;}
+	100%{border-left-color: #2CCA90;}
+}
