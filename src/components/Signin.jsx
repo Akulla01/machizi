@@ -9,7 +9,8 @@ function Signin() {
 	// const payload data 
 	
 	var user_request = new User();
-	const [image,setImage] = useState('');
+	const [image,setImage] = useState(null);
+	const [agree,setAgree] = useState(false);
 	var validator = new Validator();
 	const [userdata,setUserdata] = useState({
 		name:'',
@@ -48,20 +49,20 @@ function Signin() {
 	}
 	
   return (
-	<div className='w-full min-h-[200px] '>
+	<div className='w-full min-h-[200px] text-grey_light dark:text-grey_dark'>
 		<center><h1 className='my-4 font-bold'>Sign in (congratulation 👏)</h1></center>
 		<div className='mx-4'>
-		<input  onChange={(e)=>validator.validate_username(e,setUserdata)} type="text" className='w-[200px] my-2 h-[40px] shadow-md outline-none rounded' placeholder='user name' />
+		<input  onChange={(e)=>validator.validate_username(e,setUserdata)} type="text" className='w-[200px] my-2 h-[40px] shadow-md outline-none rounded focus:border-4   focus:border-primary   focus:text-grey_light' placeholder='user name' />
 		<input  onChange={(e)=>setUserdata(prev=>({
 			...prev,
 			email:e.target.value
-		}))} type="email" className='w-[200px] my-2 h-[40px] shadow-md outline-none rounded' placeholder='email' />
-		<input  onChange={(e)=>validator.check_number(e,setUserdata)} type="text" className='w-[200px] my-2 h-[40px] shadow-md outline-none rounded' placeholder='phone number' />
+		}))} type="email" className='w-[200px] my-2 h-[40px] shadow-md outline-none rounded focus:border-4   focus:border-primary   focus:text-grey_light' placeholder='email' />
+		<input  onChange={(e)=>validator.check_number(e,setUserdata)} type="text" className='w-[200px] my-2 h-[40px] shadow-md outline-none rounded focus:border-4   focus:border-primary   focus:text-grey_light' placeholder='phone number' />
 			<div className='flex w-full'>
 			<input onChange={(e)=>setUserdata(prev=>({
 			...prev,
 			password:e.target.value
-		}))} className='w-[200px] h-[40px] shadow-md outline-none rounded my-2' type={show ? 'text' :'password'}  placeholder='enter password..' />
+		}))} className='w-[200px] my-2 h-[40px] shadow-md outline-none rounded focus:border-4   focus:border-primary   focus:text-grey_light' type={show ? 'text' :'password'}  placeholder='enter password..' />
 			<button className='border text-sm text-light_bg h-[40px] ml-2 my-2 px-1 rounded' onClick={()=>setShow(!show)}><FontAwesomeIcon icon={show? faEye : faEyeSlash }/>{show? 'hide' : 'show'}</button>
 			</div>
 			
@@ -110,8 +111,21 @@ function Signin() {
 			</label>
 			<input onChange={handleImageUpload} className='hidden my-4' type="file" id='profile' />
 			<br />
-			<img className='my-4 w-[150px] h-[150px] object-cover rounded-[100vh] border-dark_overlay border-2 border-dashed' src={image?image:null}/>
-			<button className='bg-primary text-light_bg p-1 w-[150px] h-[40px] rounded mb-4' onClick={handlesignIn}>sign in</button>
+			{
+				image && (
+			<img className='my-4 w-[150px] h-[150px] object-cover rounded-[100vh] border-dark_overlay border-2 border-dashed' src={image?image:null}/>					
+				)
+			}
+
+			<br />
+			<input onChange={()=>setAgree(!agree)} type="checkbox"  className='accent-primary'  /> 
+			&nbsp;I agree to <a href="#" className='underline text-primary hover:text-accent'>terms and conditions</a> 
+			{
+				agree &&(
+				<button className='bg-primary text-light_bg p-1 w-[150px] h-[40px] rounded mb-4' onClick={handlesignIn}>sign in</button>	
+				)
+			}
+			
 		</div>
 	</div>
   )

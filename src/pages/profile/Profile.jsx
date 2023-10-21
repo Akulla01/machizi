@@ -111,7 +111,12 @@ function Profile() {
           <button onClick={()=>setPerpage(prev =>(prev+=1))} className='w-full h-[40px] bg-accent mt-4 text-grey_dark'>load more posts</button>				
 			)
 		  }
-
+		  
+		  {
+			 post.length < 3 &&(
+          <span className='w-full h-[40px] bg-accent mt-4 text-grey_dark p-1 my-4'>you need more than three post for your post to show up</span>				
+			)
+		  }
         </div>
 		</>
 		)}

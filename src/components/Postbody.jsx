@@ -14,6 +14,9 @@ function Postbody({type,url,id}) {
 	const [duration, setDuration] = useState(0);
 	const [showInfo,setshowInfo] = useState(false);
 	const video_manipulator = new Video();
+	
+	
+
 
 	
 	useEffect(() => {
@@ -64,6 +67,13 @@ function Postbody({type,url,id}) {
 		videoRef.current.currentTime = newTime;
 		setCurrentTime(newTime);
 	  }
+	  
+	  useEffect(()=>{
+		if(currentTime == duration){
+			videoRef.current?.pause();
+			setPlaying(false);
+		}
+	  },[currentTime]);
 	
   return (
 	<>

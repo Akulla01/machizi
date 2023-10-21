@@ -64,9 +64,15 @@ function Addpost() {
 	
 	
   return (
-	<div className='shadow-md rounded bg-light_bg w-full min-h-screen flex items-center flex-col dark:bg-dark_bg dark:text-grey_dark'>
+	<div className={`shadow-md rounded bg-light_bg w-full
+	${message.sent && 'overflow-y-clip overflow-hidden h-0'}
+	 min-h-screen flex items-center flex-col
+	  dark:bg-dark_bg dark:text-grey_dark`}>
 		{message.sent && message.response == null ? (
-		<Loaderwithmessage message="Large video files will take time😞"/>
+		<Loaderwithmessage 
+		filewarn="files larger than 20 minutes are not supported"
+		message={`Large video files will take time😞|| keep this window open creating your post...be patient`}
+		 />
 		):null}
 		<h1 className='text-md font-bold my-4'>Add post</h1>
 		<textarea className=' w-[90%] sm:w-[400px] dark:bg-dark_overlay rounded-sm px-1 mb-4 h-[150px]' onChange={(e)=>setuserData(prev =>({

@@ -12,25 +12,24 @@ function Login() {
 	});
 	
 	const handleLogin = () =>{
-		alert("log in initiated");
 		user_request.account('login',userData);
 	}
 	
 	
   return (
-	<div className='w-full min-h-[200px] '>
-		<center><h1 className='my-4 font-bold'>Welcome back</h1></center>
+	<div className='w-full min-h-[200px] text-grey_light dark:text-grey_dark'>
+		<center><h1 className='my-4 font-bold text-grey_dark'>Welcome back</h1></center>
 		<div className='mx-4'>
 			<input type="email" onChange={(e)=>setuserData(prev =>({
 				...prev,
 				email:e.target.value
-			}))} className='w-[200px] my-2 h-[40px] shadow-md outline-none rounded' placeholder='email' />
+			}))} className='w-[200px] my-2 h-[40px] shadow-md outline-none rounded focus:border-4   focus:border-primary   focus:text-grey_light' placeholder='email' />
 			<div className='flex w-full'>
-			<input className='w-[200px] h-[40px] shadow-md outline-none rounded my-2' onChange={(e)=>setuserData(prev =>({
+			<input className='w-[200px] h-[40px] shadow-md outline-none rounded focus:border-4   focus:border-primary   focus:text-grey_light my-2' onChange={(e)=>setuserData(prev =>({
 				...prev,
 				password:e.target.value
 			}))} type={show ? 'text' :'password'}  placeholder='enter password..' />
-			<button className='border text-light_bg h-[40px] ml-2 my-2 px-1 rounded text-sm' onClick={()=>setShow(!show)}><FontAwesomeIcon icon={show? faEye : faEyeSlash }/>{show? 'hide' : 'show'}</button>
+			<button className='border text-light_bg h-[40px] ml-2 my-2 px-1 rounded  text-sm' onClick={()=>setShow(!show)}><FontAwesomeIcon icon={show? faEye : faEyeSlash }/>{show? 'hide' : 'show'}</button>
 			</div>
 			<button className='bg-primary text-light_bg p-1 w-[150px] h-[40px] rounded' onClick={handleLogin}>log in</button>
 		</div>
