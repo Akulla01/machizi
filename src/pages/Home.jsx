@@ -49,7 +49,7 @@ function Home() {
     {!posts && (
       <div className='w-full min-h-screen bg-light_bg flex items-center justify-center dark:bg-dark_bg'>
       <div className='min-w-[100px] max-w-[250px]  h-[200px] bg-light_overlay text-grey_dark dark:bg-dark_overlay border-none rounded-md p-4 flex justify-center flex-col items-center'>
-        <h1 className='font-bold text-xl  text-primary'>memeit</h1>
+        <h1 className='font-bold text-xl  text-primary'>Machizi</h1>
         <h3 className='text-[14px]'>More connected,more fun</h3>
         <br />
         <Loader/>

@@ -33,7 +33,7 @@ export default function Homenav() {
   return (
 	<div className='dark:bg-dark_bg dark:text-grey_dark w-full h-[60px] shadow-sm mb-10 flex items-center justify-between'>
 		<div onClick={()=>window.location.reload()} className='flex gap-2 items-center'>
-			<h1 className=' font-roboto font-bold ml-1 sm:mx-2 text-xl sm:text-3xl cursor-pointer text-primary hover:text-accent'>memeit</h1>
+			<h1 className=' font-roboto font-bold ml-1 sm:mx-2 text-xl sm:text-3xl cursor-pointer text-primary hover:text-accent'>machizi</h1>
 			{
 				!showSearch && (
 				<span className='text-[10px]'>beta</span>	
