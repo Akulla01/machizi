@@ -29,6 +29,7 @@ class User {
 		}
 	 } catch (error) {
 		toast.error("there is an error");
+		console.log(error.response.data);
 	 }}
 	 
 	 

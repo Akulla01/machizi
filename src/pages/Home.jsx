@@ -22,8 +22,14 @@ function Home() {
     setNewpost(posts ?posts.slice(0,perpage):null);
   },[posts]);
   // reccomemded post
+  function automatically_reccommend(){
+    if(rec_newpost?.length ==0){
+      setview_non_following(true);
+    }
+  }
   useEffect(()=>{
     setrec_newpost(rec_posts ?rec_posts.slice(0,perpage):null);
+    automatically_reccommend();
   },[rec_posts]);
   useEffect(()=>{
     setNewpost(posts ?posts.slice(0,perpage):null);
