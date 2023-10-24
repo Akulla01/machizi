@@ -9,7 +9,7 @@ function Terms() {
 	<div className='w-full text-grey_light
 	 dark:text-grey_dark min-h-screen bg-light_bg dark:bg-dark_bg'>
 		<div className='w-full h-[40px] shadow-sm flex items-center '>
-			<ul className='w-full h-full flex items-center justify-around cursor-pointer' onClick={()=>basic.home()}>
+			<ul className='w-full h-full flex flex-col sm:flex-row items-center justify-center sm:justify-around cursor-pointer ' onClick={()=>basic.home()}>
 				<li className='font-bold flex gap-4 items-center justify-center mt-4'>
 					<img src={logo} className='w-[50px] h-[50px] rounded-lg'/>
 					<h1>Machizi</h1>
@@ -22,7 +22,7 @@ function Terms() {
 				</li>
 			</ul>
 		</div>
-		
+		<br /><br /><br />
 		<div >
 			<h1 className='sm:w-[90%] sm:mx-[10%] my-4  text-2xl '>Introduction</h1>
 			<div className='sm:w-[70%] sm:mx-[10%] my-4  '>
