@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage } from '@fortawesome/free-solid-svg-icons';
 import Loaderwithmessage from'../loaders/Loaderwithmessage'
 import Basic from '../modules/basic';
+import { toast } from 'react-toastify';
 
 function Addpost() {
 	const [with_media,setwith_media] = useState(false);
@@ -22,21 +23,28 @@ function Addpost() {
 		type:null
 	});
 	
-		// this function show the preview of the image or video that the user has selected
+		// this function show the preview of the image or video that the user has selected		
 		const handleMediaUpload = (e) => {
 			e.preventDefault();
 			  const selectedMedia = e.target.files[0];
 			  const mediaUrl = URL.createObjectURL(selectedMedia);
+			  
 			  setuserData(prev=>({
 				...prev,
 				post_media:selectedMedia
 			  }));
 			  if(selectedMedia.type.includes('video')){
+				var  size = selectedMedia.size/(1024*1024);
+				console.log(size);
+				// if its greater than 500MB
+				if(size > 500){
+					toast.error("your video is too long..it may not upload.");
+				}
 				setMedia(prev =>({
 					...prev,
 				url:mediaUrl,
 				type:'video'
-				}));
+				}));				
 			  }
 			  if(selectedMedia.type.includes('image')){
 				setMedia(prev =>({

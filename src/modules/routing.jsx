@@ -5,6 +5,7 @@ import Addpost from '../components/Addpost'
 import Profile from '../pages/profile/Profile'
 import Userprofile from '../pages/profile/Userprofile'
 import Reports from '../components/Reports'
+import Terms from '../pages/terms/Terms'
  
 	const routes =[
 		{
@@ -14,6 +15,10 @@ import Reports from '../components/Reports'
 		{
 			path: '/accounts',
 			component : <Accounts/>
+		},
+		{
+			path: '/terms',
+			component : <Terms/>
 		},
 		{
 			path: '/create-post',

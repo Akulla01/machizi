@@ -119,7 +119,7 @@ function Signin() {
 
 			<br />
 			<input onChange={()=>setAgree(!agree)} type="checkbox"  className='accent-primary'  /> 
-			&nbsp;I agree to <a href="#" className='underline text-primary hover:text-accent'>terms and conditions</a> 
+			&nbsp;I agree to <a href="/terms" className='underline text-primary hover:text-accent'>terms and conditions</a> 
 			{
 				agree &&(
 				<button className='bg-primary text-light_bg p-1 w-[150px] h-[40px] rounded mb-4' onClick={handlesignIn}>sign in</button>	

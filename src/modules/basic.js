@@ -21,6 +21,9 @@ class Basic {
 	basic_reload(){
 		window.location.reload();
 	}
+	redirect_user(path){
+		window.location.href=`/${path}`;
+	}
 	
 	change_theme(){
 		if( this.theme =='light'){
