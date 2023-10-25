@@ -5,6 +5,7 @@ import { faImage } from '@fortawesome/free-solid-svg-icons';
 import Loaderwithmessage from'../loaders/Loaderwithmessage'
 import Basic from '../modules/basic';
 import { toast } from 'react-toastify';
+import Banner from "../../src/adselements/Banner";
 
 function Addpost() {
 	const [with_media,setwith_media] = useState(false);
@@ -120,6 +121,7 @@ function Addpost() {
 		<br />
 		<br />
 		<span className='text-primary my-2 text-sm'> ⚠currently you can only upload videos less than 20 minutes only</span>
+		<Banner/>
 	</div>
   )
 }

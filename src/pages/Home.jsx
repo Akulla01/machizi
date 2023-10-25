@@ -7,6 +7,8 @@ import Infinite from '../modules/infinite'
 import Followercomponent from '../components/Followercomponent'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import Banner from '../adselements/Banner'
+import Inbuilt from '../adselements/Inbuilt'
 
 function Home() {
   const post_request = new Post_handler();
@@ -72,6 +74,8 @@ function Home() {
         <div className='w-full m-0 md:w-[75%] md:ml-[15%] min-h-screen mb-0 dark:bg-dark_bg dark:shadow'>
           <Followercomponent/>
           {/* reccommeded post first */}
+          {/* banner ads to be displayed here*/}
+          <Banner/>
           {
             rec_newpost &&(
              <h3 className='text-md dark:text-light_bg my-4 text-primary font-bold mx-4 sm:mx-[5%]'>from your following</h3> 
@@ -80,9 +84,18 @@ function Home() {
           
           {
             rec_newpost?.map(userpost=>(
+              <>
              <Post key={userpost.id} id={userpost.id} userpost={userpost}/> 
+             {
+              userpost.id %6 === 0 && (
+                <Inbuilt/>
+              )
+             }
+             </>
             ))
           }
+          
+          
           
           {
             !view_non_following && (
@@ -99,7 +112,14 @@ function Home() {
           <h3 className='text-md dark:text-light_bg my-4 text-primary font-bold mx-4 sm:mx-[5%]'>reccomemded posts</h3>
           {
             newpost?.map(userpost=>(
+              <>
              <Post key={userpost.id} id={userpost.user_id} userpost={userpost}/> 
+             {
+              userpost.id % 6 == 0 && (
+                <Inbuilt/>
+              )
+             }
+             </>
             ))
           }              
               </>

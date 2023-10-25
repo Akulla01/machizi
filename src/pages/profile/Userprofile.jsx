@@ -5,6 +5,8 @@ import { faEdit, faHome, faSignOut, faTrash, faUpload } from '@fortawesome/free-
 import Post from '../../components/Post';
 import { useNavigate, useParams } from 'react-router-dom';
 import Loader from '../../loaders/Loader';
+import Banner from '../../adselements/Banner';
+import Inbuilt from '../../adselements/Inbuilt';
 
 
 function Userprofile() {
@@ -51,7 +53,7 @@ function Userprofile() {
 				<button onClick={()=>request.edit_user("manage-followers",payload)} className='mx-2 border border-light_bg text-grey_dark text-sm hover:bg-light_bg hover:text-primary font-bold p-2 rounded-md hover:text-primar'>follow</button>
 			</div>
 		</div>
-		
+		<Banner/>
 		{post && (
       <>
         <div className='md:w-[60%] md:ml-[20%] md:shadow-md min-h-screen dark:bg-dark_bg dark:text-grey_dark'>
@@ -59,6 +61,11 @@ function Userprofile() {
             post?.map(userpost=>(
 				<>
 				<Post key={userpost.id} userpost={userpost}/>
+				{
+              userpost.id %6 === 0 && (
+                <Inbuilt/>
+              )
+             }
 				</>
               
 			 

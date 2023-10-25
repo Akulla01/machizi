@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Signin from '../../components/Signin';
 import Login from '../../components/Login';
 import 'react-toastify/dist/ReactToastify.css';
+import Banner from '../../adselements/Banner';
 
 
 function Accounts() {
@@ -14,6 +15,7 @@ function Accounts() {
 			type ? <Signin/> : <Login/>
 		}
 		<a href="/" className='underline mx-4'>back home</a>
+		<Banner/>
 	</div>
 	</div>
   )
