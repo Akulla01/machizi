@@ -15,7 +15,7 @@ function Accounts() {
 			type ? <Signin/> : <Login/>
 		}
 		<a href="/" className='underline mx-4'>back home</a>
-		<Banner/>
+		<Banner isGlobal={false}/>
 	</div>
 	</div>
   )

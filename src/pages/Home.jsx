@@ -29,6 +29,7 @@ function Home() {
       setview_non_following(true);
     }
   }
+    
   useEffect(()=>{
     setrec_newpost(rec_posts ?rec_posts.slice(0,perpage):null);
     automatically_reccommend();
@@ -75,9 +76,11 @@ function Home() {
           <Followercomponent/>
           {/* reccommeded post first */}
           {/* banner ads to be displayed here*/}
-          <Banner/>
+          <Banner
+          isGlobal={false}
+            />
           {
-            rec_newpost &&(
+            rec_newpost?.length !== 0 &&(
              <h3 className='text-md dark:text-light_bg my-4 text-primary font-bold mx-4 sm:mx-[5%]'>from your following</h3> 
             )
           }
@@ -88,7 +91,7 @@ function Home() {
              <Post key={userpost.id} id={userpost.id} userpost={userpost}/> 
              {
               userpost.id %6 === 0 && (
-                <Inbuilt/>
+                <Inbuilt isGlobal={true}/>
               )
              }
              </>
@@ -116,7 +119,9 @@ function Home() {
              <Post key={userpost.id} id={userpost.user_id} userpost={userpost}/> 
              {
               userpost.id % 6 == 0 && (
-                <Inbuilt/>
+                // if the add is going to be shown everywhere then is global is set to true
+                // if its going to be shown on the homepage only then isglobal is false
+                <Inbuilt isGlobal={true} />
               )
              }
              </>

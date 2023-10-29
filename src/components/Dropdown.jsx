@@ -1,4 +1,4 @@
-import { faSignIn, faUser,faUpload } from '@fortawesome/free-solid-svg-icons';
+import { faSignIn, faUser,faUpload, faAd } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react'
 import {Link} from 'react-router-dom';
@@ -14,6 +14,7 @@ export default function Dropdown() {
 		<Link className='px-4 my-4 w-[90%]  hover:text-accent  font-bold' to="/profile"> <FontAwesomeIcon icon={faUser}/> go to profile</Link>
 		<Link className='px-4 my-4 w-[90%]  hover:text-accent  font-bold' to="/create-post"><FontAwesomeIcon icon={faUpload}/> create post</Link>
 		<Link className='px-4 my-4 w-[90%]  hover:text-accent  font-bold' to="/accounts"><FontAwesomeIcon  icon={faSignIn}/> accounts</Link>
+		<Link className='px-4 my-4 w-[90%]  hover:text-accent  font-bold' to="/"><FontAwesomeIcon  icon={faAd}/> advertisements</Link>
 		<button className='px-4 my-4 w-[90%]  hover:text-accent  font-bold' onClick={()=>delete_token()} >Log out</button>
 	</div>
   )

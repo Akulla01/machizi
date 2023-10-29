@@ -87,7 +87,7 @@ function Profile() {
 				<Reported reported={reported}/>
 			)
 		}
-		<Banner/>
+		<Banner isGlobal={false}/>
 		{reported.length !== 0 &&(
 		<center><button onClick={
 			()=>window.location.href ="reports"

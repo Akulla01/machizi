@@ -53,7 +53,7 @@ function Userprofile() {
 				<button onClick={()=>request.edit_user("manage-followers",payload)} className='mx-2 border border-light_bg text-grey_dark text-sm hover:bg-light_bg hover:text-primary font-bold p-2 rounded-md hover:text-primar'>follow</button>
 			</div>
 		</div>
-		<Banner/>
+		<Banner isGlobal={false}/>
 		{post && (
       <>
         <div className='md:w-[60%] md:ml-[20%] md:shadow-md min-h-screen dark:bg-dark_bg dark:text-grey_dark'>
