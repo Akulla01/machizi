@@ -41,6 +41,7 @@ function Inbuilt({isGlobal}) {
 	<div className='w-full h-[400px] my-10 sm:w-[90%] sm:p-2 sm:mx-[5%] md:w-[70%] md:mx-[10%] min-h-[100px]  mb-0 cursor-pointer'
 	onClick={()=>window.open(randinbuilt?.link)}
 	>
+		
 		{
 			!randinbuilt && (
 				<>
@@ -60,7 +61,7 @@ function Inbuilt({isGlobal}) {
 				<>
 				<Adhead adData ={randinbuilt}/>
 				<div className='w-full h-[300px] bg-grey_light dark:bg-grey_dark my-4 sm:w-[90%] sm:p-2 sm:mx-[5%] md:w-[70%] md:mx-[10%] min-h-[100px]  mb-0'>
-				<img src={randinbuilt?.ad_media} className='bg-transparent w-full h-full flex items-center justify-center flex-col gap-2'/>
+				<img src={randinbuilt?.ad_media} className='bg-transparent w-full h-full flex items-center justify-center flex-col gap-2 object-cover'/>
 				</div>
 				</>
 			)

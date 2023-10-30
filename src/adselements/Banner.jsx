@@ -5,33 +5,32 @@ import Adrequest from '../modules/ad_request';
 
 function Banner({isGlobal}) {
 	const ad_request = new Adrequest();
-	const [banner_home,setbanner_home] = useState([]);
+	const [banner,setbanner] = useState([]);
 	const [banner_counter,setbanner_counter] = useState(0);
 	const [current_banner,setcurrent_banner] = useState([]);
 	
 	
 	useEffect(()=>{
 		var banner_slider = setInterval(()=>{
-		  var random_number = Math.ceil(Math.random()*banner_home?.length);
-		  if(banner_home?.length-1 >= 1){
+		  var random_number = Math.ceil(Math.random()*banner?.length);
+		  if(banner?.length-1 >= 1){
 			setbanner_counter(random_number);
 		  }
 		},6000);
 		return () =>clearInterval(banner_slider);
-	  },[banner_home]);
+	  },[banner]);
 	
 	  useEffect(()=>{
-		setcurrent_banner(banner_home[banner_counter]);
+		setcurrent_banner(banner[banner_counter]);
 	  },[banner_counter]);
 	  
 	  
+	//   if the advertisement is  to be shown globally or its for the homepage only.
 	  useEffect(()=>{
 		if(isGlobal){
-			ad_request.get_ads("global-banner",setbanner_home);
-			console.log("global");
+			ad_request.get_ads("global-banner",setbanner);
 		}else{
-			ad_request.get_ads("home-banner",setbanner_home);
-			console.log("home");
+			ad_request.get_ads("home-banner",setbanner);
 		}
 		
 	  },[]);

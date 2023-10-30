@@ -121,7 +121,7 @@ function Addpost() {
 		<br />
 		<br />
 		<span className='text-primary my-2 text-sm'> ⚠currently you can only upload videos less than 20 minutes only</span>
-		<Banner/>
+		<Banner isGlobal={false}/>
 	</div>
   )
 }
