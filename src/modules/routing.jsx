@@ -6,6 +6,7 @@ import Profile from '../pages/profile/Profile'
 import Userprofile from '../pages/profile/Userprofile'
 import Reports from '../components/Reports'
 import Terms from '../pages/terms/Terms'
+import Addashboard from '../pages/advertisement/Addashboard'
  
 	const routes =[
 		{
@@ -15,6 +16,10 @@ import Terms from '../pages/terms/Terms'
 		{
 			path: '/accounts',
 			component : <Accounts/>
+		},
+		{
+			path: '/advertisement',
+			component : <Addashboard/>
 		},
 		{
 			path: '/terms',
