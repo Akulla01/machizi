@@ -39,6 +39,11 @@ class Basic {
 			localStorage.setItem('theme',"light");
 		}
 	}
+	
+	truncate(word){
+		var truncated = word.slice(0,20)+"...";
+		return truncated;
+	}
 }
 
 export default Basic;

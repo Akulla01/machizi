@@ -11,6 +11,7 @@ function Signin() {
 	var user_request = new User();
 	const [image,setImage] = useState(null);
 	const [agree,setAgree] = useState(false);
+	const [step,setStep] = useState(1);
 	var validator = new Validator();
 	const [userdata,setUserdata] = useState({
 		name:'',
@@ -50,22 +51,62 @@ function Signin() {
 	
   return (
 	<div className='w-full min-h-[200px] text-grey_light dark:text-grey_dark'>
-		<center><h1 className='my-4 font-bold'>Sign in (congratulation 👏)</h1></center>
+		<center><h1 className='my-4 font-bold'>step {step} of 5 (congratulation 👏)</h1></center>
 		<div className='mx-4'>
-		<input  onChange={(e)=>validator.validate_username(e,setUserdata)} type="text" className='w-[200px] my-2 h-[40px] shadow-md outline-none rounded focus:border-4   focus:border-primary   focus:text-grey_light' placeholder='user name' />
-		<input  onChange={(e)=>setUserdata(prev=>({
+			{
+				step == 1 && (
+					<div className='flex flex-col w-full'>
+					<label htmFor="username" className='text-sm mt-4 text-grey_light dark:text-grey_dark'> username(no space)</label>
+					<input id="username" 
+					 onChange={(e)=>validator.validate_username(e,setUserdata)} 
+					 type="text" 
+					 value={userdata.name}
+					 className='w-[80%] min-w-[200px] my-2 h-[40px] shadow-md outline-none rounded focus:border-4   focus:border-primary   focus:text-grey_light'
+					  placeholder='user name' />
+					<label htmFor="email" className='text-sm mt-4 text-grey_light dark:text-grey_dark'> email(enter a working email)</label>
+					<input  onChange={(e)=>setUserdata(prev=>({
 			...prev,
 			email:e.target.value
-		}))} type="email" className='w-[200px] my-2 h-[40px] shadow-md outline-none rounded focus:border-4   focus:border-primary   focus:text-grey_light' placeholder='email' />
-		<input  onChange={(e)=>validator.check_number(e,setUserdata)} type="text" className='w-[200px] my-2 h-[40px] shadow-md outline-none rounded focus:border-4   focus:border-primary   focus:text-grey_light' placeholder='phone number' />
-			<div className='flex w-full'>
-			<input onChange={(e)=>setUserdata(prev=>({
-			...prev,
-			password:e.target.value
-		}))} className='w-[200px] my-2 h-[40px] shadow-md outline-none rounded focus:border-4   focus:border-primary   focus:text-grey_light' type={show ? 'text' :'password'}  placeholder='enter password..' />
-			<button className='border text-sm text-light_bg h-[40px] ml-2 my-2 px-1 rounded' onClick={()=>setShow(!show)}><FontAwesomeIcon icon={show? faEye : faEyeSlash }/>{show? 'hide' : 'show'}</button>
-			</div>
-			
+		}))}
+		 type="email" 
+		 id='email'
+		 value={userdata.email}
+		 className='w-[80%] min-w-[200px] my-2 h-[40px] shadow-md outline-none rounded focus:border-4   focus:border-primary   focus:text-grey_light' 
+		placeholder='email' />
+		</div>
+				)
+			}
+		
+		{
+			step == 2 &&(
+				<div className='flex flex-col w-full'>
+					<label className='text-sm mt-4 text-grey_light dark:text-grey_dark' htmFor="phone"> phone(format: 07-XXXX-XXXX)</label>
+					<input 
+					 onChange={(e)=>validator.check_number(e,setUserdata)}
+					 type="text"
+					 value={userdata.phone}
+					 className='w-[80%] min-w-[200px] my-2 h-[40px] shadow-md outline-none rounded focus:border-4   focus:border-primary   focus:text-grey_light'
+					  id='phone'
+					   placeholder='phone number' />
+					   <label className='text-sm mt-4 text-grey_light dark:text-grey_dark' htmFor="password">enter your password</label>
+					<div className='flex w-full'>	
+					<input 
+					onChange={(e)=>setUserdata(prev=>({
+					...prev,
+					password:e.target.value
+					}))} className='w-[80%] min-w-[200px] my-2 h-[40px] shadow-md outline-none rounded focus:border-4   focus:border-primary   focus:text-grey_light' type={show ? 'text' :'password'} 
+					id='password' 
+					value={userdata.password}
+					placeholder='enter password..' />
+					<button className='border text-sm text-light_bg h-[40px] ml-2 my-2 px-1 rounded' onClick={()=>setShow(!show)}><FontAwesomeIcon icon={show? faEye : faEyeSlash }/>{show? 'hide' : 'show'}</button>
+					</div>
+				</div>
+			)
+		}
+
+			{
+				step == 3 && (
+					<>
 			{/* gender */}
 			<fieldset className='flex flex-col'>
 				<label htmlFor="gender" className='mt-4 text-primary'>gender</label>
@@ -73,20 +114,35 @@ function Signin() {
 					<span onChange={(e)=>setUserdata(prev=>({
 			...prev,
 			gender:e.target.value
-		}))} className='ml-4'><input type="radio" className='accent-primary'  name='gender'  value="male" />&nbsp;male</span>
+		}))} className='ml-4'>
+			<input type="radio" className='accent-primary' 
+			  name='gender' 
+			   value="male" />&nbsp;male</span>
 					<span onChange={(e)=>setUserdata(prev=>({
 			...prev,
 			gender:e.target.value
-		}))} className='ml-4'><input type="radio" className='accent-primary'  name='gender' value="female" />&nbsp;female</span>
+		}))}
+		 className='ml-4'
+		 ><input type="radio" 
+		 className='accent-primary' 
+		  name='gender'
+		   value="female"
+		    />&nbsp;female
+			</span>
 					<span onChange={(e)=>setUserdata(prev=>({
 			...prev,
 			gender:e.target.value
 		}))} className='ml-4'><input type="radio" className='accent-primary' name='gender'  value="preffer not to tell" />&nbsp;not tell</span>
 			</radiogroup>
 			</fieldset>
-			
-			
-			{/* status */}
+					</>
+				)
+			}
+
+			{
+				step == 4 && (
+					<>
+{/* status */}
 						<fieldset className='flex flex-col'>
 				<label htmlFor="status" className='mt-4 text-primary'>status</label>
 				<radiogroup  id="status"  className="mb-4">
@@ -103,9 +159,16 @@ function Signin() {
 			status:e.target.value
 		}))} className='ml-4'><input type="radio" className='accent-primary' name='status'  value="not tell" />&nbsp;not tell</span>
 				</radiogroup>
-			</fieldset>
+			</fieldset>					
+					</>
+				)
+			}
 			
-			{/* image  upload field */}
+			
+			{
+				step ===5 && (
+					<div className='my-10 mx-4'>
+				{/* image  upload field */}
 			<label className='my-4 cursor-pointer border-2  p-4 border-dashed' htmlFor="profile">
 				upload profile
 			</label>
@@ -124,7 +187,31 @@ function Signin() {
 				agree &&(
 				<button className='bg-primary text-light_bg p-1 w-[150px] h-[40px] rounded mb-4' onClick={handlesignIn}>sign in</button>	
 				)
+			}					
+			</div>
+				)
 			}
+			
+			{
+				step !=5 && (
+				<div className='my-10'>
+					{step > 1 && (
+					<button
+					className='w-[100px] h-[30px] border rounded mx-4 hover:border-none hover:bg-primary' 
+					  onClick={()=>setStep(prev => (prev-=1))}>
+						previous
+						</button>						
+					)}
+					
+					<button
+					 className={`
+					${step == 1 ? ' rounded w-[80%] h-[40px] border-none bg-accent hover:bg-primary':'border rounded mx-4 hover:border-none hover:bg-primary w-[100px] h-[30px]'}
+					  `} 
+					  onClick={()=>setStep(prev => (prev+=1))}>next</button>
+				</div>	
+				)
+			}
+
 			
 		</div>
 	</div>
