@@ -1,10 +1,37 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Basic from '../modules/basic'
+import Adrequest from '../modules/ad_request';
+import { toast } from 'react-toastify';
+import Update from './Update';
 
 function Action({data}) {
 const basic = new Basic();	
+const ad_request = new Adrequest();
+const[ad,setAd] = useState(null);
+const [showedit,setShowedit] = useState(false);
+
+
+// deletion of advertisement
+function handle_delete(id){
+	var confirm_delete = confirm(`do you want to delete ${id}`);
+	if(confirm_delete){
+		var object ={id:id};
+		ad_request.publish_ad("delete-ad",object);
+	}else{
+		toast.success("ad not deleted");
+	}
+}
+
+
   return (
 	<div className='overflow-x-scroll'>
+		{showedit&&(
+		<Update
+		close ={setShowedit}
+		ad_value ={ad}
+		/>	
+		)}
+		
 		<table className='my-10 mx-4 w-[90%]'>
 			<thead>
 				<tr>
@@ -32,8 +59,14 @@ const basic = new Basic();
 					<td className='text-sm p-2 '><a href={ads.link}>{ads.link}</a></td>
 					<td className='text-sm p-2 '>
 						<div className='flex flex-col gap-2 items-center justify-center'>
-							<button className='w-full h-full border rounded hover:bg-primary hover:border-none'>edit</button>
-							<button className='w-full h-full border rounded hover:bg-primary hover:border-none'>delete</button>
+							<button className='w-full h-full border rounded hover:bg-primary hover:border-none'
+							onClick={()=>{
+								setAd(ads);
+								setShowedit(true);
+							}}
+							>edit</button>
+							{/* you can use a function of the ad if it satify your use case eg publish satfyies delete */}
+							<button className='w-full h-full border rounded hover:bg-primary hover:border-none' onClick={()=>handle_delete(ads.id)}>delete</button>
 						</div>
 					</td>
 				</tr>	

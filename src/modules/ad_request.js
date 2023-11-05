@@ -46,6 +46,33 @@ class Adrequest{
 		}
 
 	}
+	
+	
+	// publish ad
+	async publish_ad(path,object){
+		
+		if(this.is_token){
+			var response;
+			try {
+				response = await axios_http.post(path,object,{
+					headers: {
+						'Authorization': `Bearer ${this.token}`
+					  }
+				 });
+			if(response.data.success){
+				toast.success(response.data.message);
+			}else{
+				toast.error(response.data.message);
+			}
+			} catch (error) {
+				toast.error("there was an error");
+				console.log(error);		
+			}	
+		}else{
+			this.basic.redirect_user("accounts");
+		}
+
+	}
 }
 
 export default Adrequest;

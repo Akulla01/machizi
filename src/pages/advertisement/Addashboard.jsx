@@ -3,6 +3,7 @@ import Homenav from '../../components/Homenav';
 import Adnav from '../../components/Adnav';
 import Adrequest from '../../modules/ad_request';
 import Action from '../../adselements/Action';
+import Publish from '../../adselements/Publish';
 
 function Addashboard() {
 	const [ad_data,setad_data] = useState([]);
@@ -32,6 +33,12 @@ function Addashboard() {
 			)
 		}
 		
+		{
+			create && (
+				<Publish/>
+			)
+		}
+		
 		{/* list for the running ads etc*/}
 		
 		{
@@ -54,7 +61,9 @@ function Addashboard() {
 			</div>
 			<div className='w-[90%] sm:w-[250px] h-[200px] bg-light_overlay dark:bg-dark_overlay rounded flex flex-col items-center justify-center'>
 				<h3 className='text-xl font-bold text-primary'>actions</h3>
-				<button className='border  my-2 border-b-grey_light dark:border-grey_dark w-[100px] h-[30px] hover:bg-primary hover:border-none rounded '>create/publish</button>
+				<button 
+				onClick={()=>setCreate(!create)}
+				className='border  my-2 border-b-grey_light dark:border-grey_dark w-[100px] h-[30px] hover:bg-primary hover:border-none rounded '>create/publish</button>
 				<button
 				onClick={()=>setUpdate(!update)}
 				 className='border  my-2 border-b-grey_light dark:border-grey_dark w-[100px] h-[30px] hover:bg-primary hover:border-none rounded '>update/edit</button>

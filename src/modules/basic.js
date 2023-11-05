@@ -1,13 +1,9 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-
 
 
 class Basic {
 	constructor(){
 		var theme = localStorage.getItem('theme');
-		const navigate = useNavigate();
-		this.navigate = navigate;
 		this.theme = theme ? theme : 'dark';
 	}
 	redirect_to_profile(username,user_id){
@@ -15,7 +11,7 @@ class Basic {
 	}
 	// redirect to home
 	home(){
-		this.navigate("/");
+		window.location.href =import.meta.env.VITE_FRONTEND_URL;
 	}
 	
 	basic_reload(){
