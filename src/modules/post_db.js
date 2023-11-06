@@ -54,12 +54,7 @@ class Post_handler {
 		setter(null);
 		}
 	 } catch (error) {
-		/* 
-		if there was an error in retrieving the
-		 post from the database then
-		  */
-		 console.log(error);
-		// toast.error("error in retieving post");
+		console.log("there was an error");	
 	 }			
 		}else{
 			setter(null);

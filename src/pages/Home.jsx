@@ -116,7 +116,7 @@ function Home() {
           {
             rec_newpost?.map(userpost=>(
               <>
-             <Post key={userpost.id} id={userpost.id} userpost={userpost}/> 
+             <Post key={userpost.id} id={userpost.id}  userpost={userpost}/> 
              {
               userpost.id %6 === 0 && (
                 <Inbuilt isGlobal={false}/>

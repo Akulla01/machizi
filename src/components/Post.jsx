@@ -6,7 +6,7 @@ import Postcontrols from './Postcontrols';
 import Postcomment from './Postcomment';
 
 
-export default function Post({userpost,id}) {
+export default function Post({userpost,id,status}) {
 	const media_type =userpost?.media_type;
   return (
 	<div id="post" className='w-full sm:w-[90%] sm:p-2 sm:mx-[5%] md:w-[70%] md:mx-[10%] min-h-[100px] my-10 mb-0'>

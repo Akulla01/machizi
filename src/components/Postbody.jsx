@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfo, faPause, faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faGlobe, faInfo, faPause, faPlay } from '@fortawesome/free-solid-svg-icons';
 import Loader from '../loaders/Loader';
 import Video from '../modules/video';
 import Videoinfo from './Videoinfo';
@@ -14,11 +14,19 @@ function Postbody({type,url,id}) {
 	const [duration, setDuration] = useState(0);
 	const [showInfo,setshowInfo] = useState(false);
 	const video_manipulator = new Video();
-	
+	const [isOnline,setisOnline] = useState(true);
 	
 
-
-	
+  // if the user is online
+  const networkStatus = () =>{
+    if(navigator.onLine){
+     setisOnline(true);     
+    }else{
+      setisOnline(false);
+    }
+  }
+  
+  
 	useEffect(() => {
 		
 		// meaning if its a video file
@@ -26,17 +34,22 @@ function Postbody({type,url,id}) {
 			const video = videoRef.current;
 	
 		// Update the duration and add a timeupdate event listener
-		video.addEventListener('loadedmetadata', () => {
+		video?.addEventListener('loadedmetadata', () => {
 		  setDuration(video.duration);
 		});
 	
-		video.addEventListener('timeupdate', () => {
+		video?.addEventListener('timeupdate', () => {
 		  setCurrentTime(video.currentTime);
 		});
+		// offline online checker
+		window.addEventListener('online',networkStatus);
+		window.addEventListener('offline',networkStatus);
 		// Remove event listeners when component unmounts
 		return () => {
-		  video.removeEventListener('loadedmetadata', () => {});
-		  video.removeEventListener('timeupdate', () => {});
+		  video?.removeEventListener('loadedmetadata', () => {});
+		  video?.removeEventListener('timeupdate', () => {});
+		  window.addEventListener('offline',networkStatus);
+		  window.addEventListener('online',networkStatus);
 		};	
 		}else{
 			return;
@@ -80,19 +93,35 @@ function Postbody({type,url,id}) {
 	{type && (
 	<div className='w-full min-h-0 object-cover  mb-4'>
 		
+		
+		
 		{/* 
 		1=>media type for image
 		0=>media type for video 
 		null=>no media at all
 		 */}
 		{type==2 &&(
-		<img src={url} className='w-full mx-0 sm:w-[95%] sm:mx-4 h-[400px] object-cover border-none outline-none' alt="" />	
+			<>
+			{
+				isOnline ?
+				<img src={url} className='w-full mx-0 sm:w-[95%] sm:mx-4 h-[400px] object-cover border-none outline-none' alt="" />	
+				:
+				<div className='w-full mx-0 sm:w-[95%] sm:mx-4 h-[400px] object-cover border-none outline-none flex flex-col items-center justify-center text-grey_light dark:text-grey_dark bg-light_overlay dark:bg-dark_overlay'>
+					<FontAwesomeIcon className='text-6xl' icon={faGlobe}/>
+					<span className='text-sm my-2'>You are offline videos and images may not be loaded</span>
+					<span className='text-primary underline text-sm my-2 cursor-pointer' onClick={()=>setisOnline(true)}>show anyway</span>
+				</div>
+			}
+		</>
 		)}
 		
 		{(!url && url !=null) ? <Loader/> :null}
 		
 		{type==1&&(
-		<div className={`w-full h-[300px] object-cover   mb-4 relative`}>
+			<>
+			{
+			isOnline ?
+			<div className={`w-full h-[300px] object-cover   mb-4 relative`}>
 			<video ref={videoRef} id='video_player' src={url} className='w-full h-full border-none outline-none bg-grey_light dark:bg-dark_overlay'></video>
 			{!playing && (
 			<div onClick={()=> playing ? pause_video() : play_video()} className='absolute top-[40%] left-[40%] text-grey_dark bg-primary w-[60px] h-[60px] flex items-center justify-center text-xl cursor-pointer rounded-[100vh] '><FontAwesomeIcon icon={faPlay}/></div>
@@ -123,7 +152,16 @@ function Postbody({type,url,id}) {
 				)
 			}
 
-		</div>	
+		</div>
+			:
+			<div className='w-full mx-0 sm:w-[95%] sm:mx-4 h-[400px] object-cover border-none outline-none flex flex-col items-center justify-center text-grey_light dark:text-grey_dark bg-light_overlay dark:bg-dark_overlay'>
+			<FontAwesomeIcon className='text-6xl' icon={faGlobe}/>
+			<span className='text-sm my-2'>You are offline videos and images may not be loaded</span>
+			<span className='text-primary underline text-sm my-2 cursor-pointer' onClick={()=>setisOnline(true)}>show video anyways</span>
+		</div>
+			}
+			</>
+			
 			
 		)}
 		
