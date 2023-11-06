@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Loader from '../loaders/Loader'
 import Basic from '../modules/basic';
 
 function Postheading({heading,profile,username,time,id}) {
 	const basic = new Basic();
+	
   return (
 	<div className='w-full font-roboto dark:text-grey_dark px-1'>
 		<div className='w-full flex items-center gap-2  mb-4 cursor-pointer' onClick={()=>basic.redirect_to_profile(username,id)}>

@@ -180,7 +180,7 @@ function Publish() {
 			step == 4 && (
 			 <div>
 				<h3>payment (M-pesa)</h3>
-				<span>Total cost: 5000/= (kenyan shillings)</span>
+				<span>Total cost:20/= (kenyan shillings)</span>
 				<div>
 					<button className='w-[150px] h-[40px] border hover:bg-accent rounded mx-4' onClick={()=>setStep(prev => (prev > 1 ? prev-=1 : 1))}>previous</button>
 					<button className='w-[150px] h-[40px] bg-primary hover:bg-accent rounded mx-4' onClick={()=>{

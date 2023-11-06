@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import User from '../../modules/user_db'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faHome, faSignOut, faTrash, faUpload } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faExclamation, faHome, faSignOut, faTrash, faUpload } from '@fortawesome/free-solid-svg-icons';
 import Post from '../../components/Post';
 import { useNavigate } from 'react-router-dom';
 import Post_handler from '../../modules/post_db';
@@ -87,7 +87,7 @@ function Profile() {
 				<Reported reported={reported}/>
 			)
 		}
-		<Banner isGlobal={false}/>
+		<Banner isGlobal={true}/>
 		{reported.length !== 0 &&(
 		<center><button onClick={
 			()=>window.location.href ="reports"
@@ -106,7 +106,7 @@ function Profile() {
 				</div>
 				{
               userpost.id %6 === 0 && (
-                <Inbuilt/>
+                <Inbuilt isGlobal={true}/>
               )
              }
 				</>
@@ -122,7 +122,11 @@ function Profile() {
 		  
 		  {
 			 post.length < 3 &&(
-          <span className='w-full h-[40px] bg-accent mt-4 text-grey_dark p-1 my-4'>you need more than three post for your post to show up</span>				
+				<div className='w-[200px] flex-col min-h-[200px] sm:mx-[40%] my-10 shadow-md flex items-center justify-center'>
+					<FontAwesomeIcon className='text-4xl bg-grey_light text-light_bg w-[60px] h-[60px] rounded-[100vh] dark:bg-dark_overlay dark:text-grey_dark' icon={faExclamation}/>
+					<span className='dark:text-grey_dark my-4'>create more post</span>
+					<a href="/create-post" className='text-primary underline'>create post</a>
+				</div>
 			)
 		  }
         </div>

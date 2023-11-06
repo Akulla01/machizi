@@ -9,6 +9,8 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import Banner from '../adselements/Banner'
 import Inbuilt from '../adselements/Inbuilt'
+import Offline from '../components/Offline'
+import Online from '../components/Online'
 
 function Home() {
   const post_request = new Post_handler();
@@ -19,6 +21,8 @@ function Home() {
   const[view_non_following,setview_non_following] = useState(false);
   const [newpost,setNewpost] = useState([]);
   const theme = localStorage.getItem('theme');
+  const [isOnline,setisOnline] = useState(true);
+  
   
   useEffect(()=>{
     setNewpost(posts ?posts.slice(0,perpage):null);
@@ -46,11 +50,29 @@ function Home() {
     }
   }
   
+  // if the user is online
+  const networkStatus = () =>{
+    if(navigator.onLine){
+     setisOnline(true);     
+    }else{
+      setisOnline(false);
+    }
+  }
+
+  
   useEffect(()=>{
     post_request.retrieve_post(setPost);
     post_request.retrieve_reccommeded_post(setrec_post);
     window.addEventListener('scroll',handle_infinite);
-    return ()=>window.removeEventListener('scroll',handle_infinite);
+    window.addEventListener('online',networkStatus);
+    window.addEventListener('offline',networkStatus);
+    window.addEventListener('load',networkStatus);
+    return ()=>{
+      window.removeEventListener('scroll',handle_infinite);
+      window.addEventListener('offline',networkStatus);
+      window.addEventListener('online',networkStatus);
+      window.removeEventListener('load',networkStatus);
+    }
   },[]);
   return (
 	<div div className='w-full min-h-screen bg-light_bg dark:bg-dark_bg overflow-x-clip'>
@@ -84,14 +106,20 @@ function Home() {
              <h3 className='text-md dark:text-light_bg my-4 text-primary font-bold mx-4 sm:mx-[5%]'>from your following</h3> 
             )
           }
-          
+          {/* if the user is offline then show him this */}
+          {!isOnline && (
+            <Offline/>
+          )}
+          {isOnline && (
+            <Online/>
+          )}
           {
             rec_newpost?.map(userpost=>(
               <>
              <Post key={userpost.id} id={userpost.id} userpost={userpost}/> 
              {
               userpost.id %6 === 0 && (
-                <Inbuilt isGlobal={true}/>
+                <Inbuilt isGlobal={false}/>
               )
              }
              </>

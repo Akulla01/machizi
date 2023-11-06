@@ -14,6 +14,7 @@ export default {
       'dark_bg':'#000321',
       'dark_overlay':'#080B28',
       'light_overlay':'#f9f9f9',
+      "overlays":"#080b2856",
       'transparent':'transparent',
       'overlay':"#b8b8b863",
       'crimson':'crimson'

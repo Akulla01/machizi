@@ -11,6 +11,7 @@ function Banner({isGlobal}) {
 	
 	
 	useEffect(()=>{
+		console.log("banner",banner);
 		var banner_slider = setInterval(()=>{
 		  var random_number = Math.ceil(Math.random()*banner?.length);
 		  if(banner?.length-1 >= 1){
@@ -42,7 +43,7 @@ function Banner({isGlobal}) {
 			current_banner ? (
 			<div className='bg-transparent w-full h-full flex items-center justify-center flex-col gap-2' onClick={()=>window.open(current_banner.link)}>
 				<img src={current_banner.ad_media} className=' w-full h-full object-cover'/>
-				<h2 className='absolute text-xl text-grey_light font-bold  p-[2px]'>{current_banner.ad_heading}</h2>
+				<h2 className='absolute text-xl text-grey_dark  font-bold  p-[2px] bg-overlays'>{current_banner.ad_heading}</h2>
 				</div>	
 			)
 			:
