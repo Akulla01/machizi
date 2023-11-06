@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFlag,faClock,faDownload } from '@fortawesome/free-solid-svg-icons';
 import User from '../modules/user_db';
 import Video from '../modules/video';
+import { ToastContainer, toast } from 'react-toastify';
 
 function Videoinfo({duration,id,url}) {
 	const [showReport,setshowReport] = useState(false);
@@ -21,6 +22,7 @@ function Videoinfo({duration,id,url}) {
 	<div className={`w-[150px] min-h-[10px] absolute bottom-[20%] z-10 right-10 bg-grey_dark
 	${showReport?'w-[200px] min-h-[200px] pb-2 right-20':null}
 	 dark:bg-dark_bg`}>
+		<ToastContainer/>
 		
 		{
 			showReport&&(
@@ -50,7 +52,7 @@ function Videoinfo({duration,id,url}) {
 		<div className='w-full h-[30px] text-grey_dark bg-primary flex items-center justify-center text-sm'>video info</div>
 		<div className='w-full flex flex-col gap-2 dark:text-light_bg text-sm mx-2 my-2'>
 		<span className='cursor-none'> <FontAwesomeIcon icon={faClock}/> &nbsp;duration:{duration} secs</span>
-		<a /* onClick={()=>video_manipulator.downloadVideo(url)} */  className='cursor-pointer'><FontAwesomeIcon icon={faDownload}/> &nbsp;download</a>
+		<a /* onClick={()=>video_manipulator.downloadVideo(url)} */  className='cursor-pointer'><FontAwesomeIcon icon={faDownload} onClick={()=>toast.success("you need to be a premium member")}/> &nbsp;download</a>
 		<span  className='cursor-pointer' onClick={()=>setshowReport(true)}> <FontAwesomeIcon icon={faFlag}/> &nbsp;report video</span>	
 		</div>				
 				</>

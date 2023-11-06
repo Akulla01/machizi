@@ -11,7 +11,6 @@ function Banner({isGlobal}) {
 	
 	
 	useEffect(()=>{
-		console.log("banner",banner);
 		var banner_slider = setInterval(()=>{
 		  var random_number = Math.ceil(Math.random()*banner?.length);
 		  if(banner?.length-1 >= 1){

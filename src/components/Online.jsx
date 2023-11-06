@@ -1,9 +1,15 @@
 import { faWifi, faX } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 function Online() {
 	const [hide,setHide] = useState(false);
+	
+	useEffect(()=>{
+		setTimeout(() => {
+			setHide(true);
+		}, 3000);
+	},[]);
   return (
 	<div className={`w-[250px]
 	${hide && 'hidden'}

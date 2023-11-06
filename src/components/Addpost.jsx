@@ -80,7 +80,10 @@ function Addpost() {
 		{message.sent && message.response == null ? (
 		<Loaderwithmessage 
 		filewarn="files larger than 20 minutes are not supported"
-		message={`Large video files will take time😞|| keep this window open creating your post...be patient`}
+		message={`
+		Large files will take time ...keep the window open..
+		reload to try again and make sure you have strong internet connection. 
+		`}
 		 />
 		):null}
 		<h1 className='text-md font-bold my-4'>Add post</h1>
@@ -121,7 +124,7 @@ function Addpost() {
 		<br />
 		<br />
 		<span className='text-primary my-2 text-sm'> ⚠currently you can only upload videos less than 20 minutes only</span>
-		<Banner isGlobal={false}/>
+		<Banner isGlobal={true}/>
 	</div>
   )
 }

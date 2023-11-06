@@ -34,7 +34,7 @@ function Profileedit({profile}) {
 	}
 	
   return (
-	<div className='z-10 w-full min-h-[200px] bg-grey_dark dark:bg-dark_bg text-grey_dark'>
+	<div className='z-10 w-full min-h-[200px] bg-grey_dark dark:bg-dark_bg dark:text-grey_dark'>
 		<center><h1 className='my-4 font-bold'>Change your profile image</h1></center>
 		<div className='mx-4 flex justify-center items-center flex-col'>
 			{/* image  upload field */}
