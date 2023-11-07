@@ -16,7 +16,11 @@ export default {
       'light_overlay':'#f9f9f9',
       "overlays":"#080b2856",
       'transparent':'transparent',
+      'silver':'#070808',
+      'basic':'#a9b0b4',
       'overlay':"#b8b8b863",
+      'platinum':'#A0B2c6',
+      'gold':'orange',
       'crimson':'crimson'
     },
     fontFamily:{

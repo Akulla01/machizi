@@ -21,7 +21,7 @@ function Home() {
   const[view_non_following,setview_non_following] = useState(false);
   const [newpost,setNewpost] = useState([]);
   const theme = localStorage.getItem('theme');
-  const [isOnline,setisOnline] = useState(true);
+  const [isOnline,setisOnline] = useState(null);
   
   
   useEffect(()=>{

@@ -46,8 +46,8 @@ function Inbuilt({isGlobal}) {
 			!randinbuilt && (
 				<>
 				<Adhead/>
-				<div className='w-full h-[300px] bg-grey_light dark:bg-grey_dark my-4 sm:w-[90%] sm:p-2 sm:mx-[5%] md:w-[70%] md:mx-[10%] min-h-[100px]  mb-0'>
-				<div className='bg-transparent w-full h-full flex items-center justify-center flex-col gap-2'>
+				<div className='w-full h-[300px]  my-4 sm:w-[90%] sm:p-2 sm:mx-[5%] md:w-[70%] md:mx-[10%] min-h-[100px]  mb-0'>
+				<div className='bg-light_overlay dark:bg-dark_overlay dark:text-grey_dark w-full h-full flex items-center justify-center flex-col gap-2'>
 				<FontAwesomeIcon className='text-2xl' icon={faAd}/>
 				<span>buy this space <a className='underline' href="#">learn more</a></span>
 				</div>

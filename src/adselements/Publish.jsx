@@ -1,12 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Adrequest from '../modules/ad_request';
 import Basic from '../modules/basic';
+import Loaderwithmessage from "../loaders/Loaderwithmessage.jsx";
 
 function Publish() {
-	const [step,setStep] = useState(1);
+	const [step,setStep] = useState(4);
 	const [image,setImage] = useState(null);
 	const basic = new Basic();
 	const adrequest = new Adrequest();
+	const [show,setShow] = useState(true);
+	const [price,setPrice] = useState({
+		global:'false',
+		ad_type:'',
+		duration:'daily',
+		plan:'',
+		price:0
+		
+	});
+	
 	const [ad_details,setad_details] = useState({
 		"ad_heading":'',
 		"ad_tags":'',
@@ -17,6 +28,105 @@ function Publish() {
 		"link":import.meta.env.VITE_FRONTEND_URL,
 		"ad_media":""
 	});
+	
+	
+	function calculate_price(){
+		// gold tier banner
+		if(ad_details.global && ad_details.ad_type =="banner" && ad_details.ad_expiry ==1){
+			setPrice(prev=>({
+				global:"true",
+				ad_type:'banner',
+				duration:"one month",
+				plan:'gold tier -banner',
+				price:3000
+			}));
+		}
+			// gold tier inbuilt
+			if(ad_details.global && ad_details.ad_type =="inbuilt" && ad_details.ad_expiry ==1){
+				setPrice(prev=>({
+					global:"true",
+					ad_type:'inbuilt',
+					duration:"one month",
+					plan:'gold tier -inbuilt',
+					price:6000
+				}));
+			}
+		// platinum tier banner
+		if(!ad_details.global && ad_details.ad_type =="banner" && ad_details.ad_expiry ==1){
+			setPrice(prev=>({
+				global:"false",
+				ad_type:'banner',
+				duration:"one month",
+				plan:'platinum tier -banner',
+				price:1500
+			}));
+		}
+		// platinum  tier inbuilt
+		if(!ad_details.global && ad_details.ad_type =="inbuilt" && ad_details.ad_expiry ==1){
+			setPrice(prev=>({
+				global:"false",
+				ad_type:'inbuilt',
+				duration:"one month",
+				plan:'platinum tier -inbuilt',
+				price:3000
+			}));
+		}
+			// silver tier banner
+			if(ad_details.global && ad_details.ad_type =="banner" && ad_details.ad_expiry == 0){
+				setPrice(prev=>({
+					global:"true",
+					ad_type:'banner',
+					duration:"one day",
+					plan:'silver tier -banner',
+					price:500
+				}));
+			}
+				// silver tier inbuilt
+				if(ad_details.global && ad_details.ad_type =="inbuilt" && ad_details.ad_expiry == 0){
+					setPrice(prev=>({
+						global:"true",
+						ad_type:'inbuilt',
+						duration:"one day",
+						plan:'silver tier -inbuilt',
+						price:700
+					}));
+				}
+				
+				// basic tier banner
+				if(!ad_details.global && ad_details.ad_type =="banner" && ad_details.ad_expiry == 0){
+					setPrice(prev=>({
+						global:"false",
+						ad_type:'banner',
+						duration:"one day",
+						plan:'basic tier -banner',
+						price:150
+					}));
+				}
+				// basic tier inbuilt
+				if(!ad_details.global && ad_details.ad_type =="inbuilt" && ad_details.ad_expiry == 0){
+					setPrice(prev=>({
+						global:"false",
+						ad_type:'inbuilt',
+						duration:"one day",
+						plan:'basic tier -inbuilt',
+						price:300
+					}));
+				}
+	}
+	
+	
+	
+	
+	
+	// calculate the cost of the add😂
+	useEffect(()=>{
+	 if(step == 4){
+		calculate_price();
+		setTimeout(() => {
+			setShow(false);
+		}, 3000);
+	 }	
+	},[step])
 	
 	 function Publish_ad(){
 		var fdata = new FormData();
@@ -178,9 +288,34 @@ function Publish() {
 		
 		{
 			step == 4 && (
-			 <div>
-				<h3>payment (M-pesa)</h3>
-				<span>Total cost:20/= (kenyan shillings)</span>
+			 <div className='shadow flex flex-col items-center justify-start my-[20%]'>
+				<h3 className='text-3xl text-primary my-2 font-bold'>payment M-pesa</h3>
+				
+				<div className='w-[300px] h-[60px]  flex shadow-md rounded-md items-center justify-around'>
+					<span className='text-xl '>Ad is global</span>
+					<span className='text-xl '>{price.global}</span>
+				</div>
+				<div className='w-[300px] h-[60px]  flex shadow-md rounded-md items-center justify-around'>
+					<span className='text-xl '>type of ad</span>
+					<span className='text-xl '>{price.ad_type}</span>
+				</div>
+				<div className='w-[300px] h-[60px]  flex shadow-md rounded-md items-center justify-around'>
+					<span className='text-xl '>duration</span>
+					<span className='text-xl '>{price.duration}</span>
+				</div>
+				<div className='w-[300px] h-[60px]  flex shadow-md rounded-md items-center justify-around'>
+					<span className='text-xl '>to be deducted</span>
+					<span className='text-xl '>ksh.{price.price}</span>
+				</div>
+				
+				<span className='text-primary my-10 font-bold'>Your plan : &nbsp;{price.plan}</span>
+					
+				{
+					show && (
+					<Loaderwithmessage message="calculating ad cost cost..."/>	
+					)
+				}
+				
 				<div>
 					<button className='w-[150px] h-[40px] border hover:bg-accent rounded mx-4' onClick={()=>setStep(prev => (prev > 1 ? prev-=1 : 1))}>previous</button>
 					<button className='w-[150px] h-[40px] bg-primary hover:bg-accent rounded mx-4' onClick={()=>{

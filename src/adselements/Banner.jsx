@@ -42,12 +42,12 @@ function Banner({isGlobal}) {
 			current_banner ? (
 			<div className='bg-transparent w-full h-full flex items-center justify-center flex-col gap-2' onClick={()=>window.open(current_banner.link)}>
 				<img src={current_banner.ad_media} className=' w-full h-full object-cover'/>
-				<h2 className='absolute text-xl text-grey_dark  font-bold  p-[2px] bg-overlays'>{current_banner.ad_heading}</h2>
+				<h2 className='absolute text-xl text-grey_dark  font-bold bg-overlays p-2'>{current_banner.ad_heading}</h2>
 				</div>	
 			)
 			:
 			(
-			<div className='bg-transparent w-full h-full flex items-center justify-center flex-col gap-2'>
+			<div className='dark:text-grey_dark bg-light_overlay dark:bg-dark_overlay w-full h-full flex items-center justify-center flex-col gap-2'>
 			<FontAwesomeIcon className='text-2xl' icon={faAd}/>
 			<span>buy this space <a className='underline' href="#">learn more</a></span>
 			</div>	

@@ -21,7 +21,7 @@ function Searchfollower({search_param,show}){
 		
   return (
 	<div className='w-full min-h-[25px] max-h-[400px] shadow mt-4 z-50 bg-light_bg dark:bg-dark_bg mb-0 overflow-y-clip'>
-		<span onClick={()=>show(false)} className='underline mt-4  cursor-pointer'>✖close</span>
+		<span onClick={()=>show(false)} className='mt-4 text-light_bg p-2 rounded text-sm hover:bg-primary  cursor-pointer bg-grey_light dark:bg-dark_overlay'>✖ &nbsp;close</span>
 				{
 			!profiles &&(
 				<div className='w-full h-full flex items-center justify-center'>

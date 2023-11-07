@@ -4,6 +4,8 @@ import Adnav from '../../components/Adnav';
 import Adrequest from '../../modules/ad_request';
 import Action from '../../adselements/Action';
 import Publish from '../../adselements/Publish';
+import Basic_silver from '../../adselements/Basic_silver';
+import Platinum_gold from '../../adselements/Platinum_gold';
 
 function Addashboard() {
 	const [ad_data,setad_data] = useState([]);
@@ -72,6 +74,20 @@ function Addashboard() {
 			)
 		}
 		
+		<br />
+		<div className='my-10 sm:w-[90%] min-h-0 shadow-md p-2 sm:mx-10' id='pricing'>
+			<center>
+			<h1 className='text-3xl my-10 font-bold'>pricing and plans</h1>	
+			{/* basic and silver component */}
+			<h3 className='my-10 font-bold'>tier 1 - for daily advertisement</h3>
+			<Basic_silver/>
+			<br />
+			<h3 className='my-10 font-bold'>tier 2 - for monthly advertisement</h3>
+			<Platinum_gold/>
+			</center>
+			
+			
+		</div>
 				
 	</div>
   )
