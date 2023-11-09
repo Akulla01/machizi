@@ -32,14 +32,15 @@ function Postcontrols({likes,comments,id}) {
   return (
 	<div className=' w-full sm:h-[40px]'>
 		<ul className='relative flex flex-col  sm:flex-row mr-2 h-full sm:w-[90%] sm:mx-[5%] gap-2 dark:text-grey_dark text-grey_light items-center justify-start'>
-				<li className='flex flex-row items-center w-full md:w-[40%] h-full '>
-					<span onClick={like_animation}  className='text-sm hover:bg-grey_dark sm:p-2 rounded-2xl cursor-pointer active:bg-primary dark:hover:bg-dark_overlay active:text-light_bg ml-4 '><FontAwesomeIcon icon={faThumbsUp}/> {likes}</span>
-					<span  className=' mx-4 sm:mx-1 text-sm hover:bg-grey_dark p-2 cursor-pointer rounded-2xl active:bg-primary dark:hover:bg-dark_overlay active:text-light_bg '><FontAwesomeIcon icon={faComment}/> {comments}</span>
+				<li className='flex flex-row items-center w-full md:w-[40%] h-full text-md'>
+					<span onClick={like_animation}  className='shadow-md mx-4 flex gap-2 sm:mx-1 text-md hover:bg-grey_dark items-center justify-center font-bold p-2 cursor-pointer rounded-2xl active:bg-primary dark:hover:bg-dark_overlay active:text-light_bg '><FontAwesomeIcon icon={faThumbsUp}/> <span>{likes}</span></span>
+					<span  className=' font-bold shadow-md mx-4 flex items-center gap-2 sm:mx-1 text-md hover:bg-grey_dark p-2 justify-center cursor-pointer rounded-2xl active:bg-primary dark:hover:bg-dark_overlay active:text-light_bg '><FontAwesomeIcon icon={faComment}/> <span>{comments}</span></span>
 				</li>
 				<li>
-				<span className='text-sm  p-2 cursor-pointer rounded-2xl flex items-center'>
-					<input type="text" className='h-[25px]  my-4 px-2 outline-none border-none bg-light_bg dark:bg-dark_overlay' onChange={(e)=>setComment(e.target.value)} placeholder='type comment..' />
-					<button onClick={message_animation} className='mx-2 flex items-center justify-center h-[25px]  rounded px-2 hover:bg-primary hover:text-light_bg'><FontAwesomeIcon icon={faPaperPlane}/> post</button>
+				<span className='text-sm  p-2 cursor-pointer rounded-2xl flex items-start'>
+					<input type="text" className='shadow-md h-[40px] ml-2 w-[150px] sm:w-[150px] rounded-bl-md rounded-tl-md outline-none px-2 border-none bg-light_overlay dark:bg-dark_overlay' onChange={(e)=>setComment(e.target.value)} placeholder='type comment..' />
+					<button onClick={message_animation}
+					 className='shadow-md w-[100px] flex items-center justify-center h-[40px] rounded-br-md  rounded-tr-md bg-light_overlay text-grey_light dark:bg-dark_overlay dark:text-grey_dark hover:bg-primary hover:text-light_bg'><FontAwesomeIcon icon={faPaperPlane}/>&nbsp;post</button>
 				</span>
 				</li>
 			</ul>

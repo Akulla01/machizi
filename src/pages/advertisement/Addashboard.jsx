@@ -65,10 +65,10 @@ function Addashboard() {
 				<h3 className='text-xl font-bold text-primary'>actions</h3>
 				<button 
 				onClick={()=>setCreate(!create)}
-				className='border  my-2 border-b-grey_light dark:border-grey_dark w-[100px] h-[30px] hover:bg-primary hover:border-none rounded '>create/publish</button>
+				className='border  my-2 border-b-grey_light dark:border-grey_dark w-[150px] h-[40px] hover:bg-primary hover:border-none rounded '>create/publish</button>
 				<button
 				onClick={()=>setUpdate(!update)}
-				 className='border  my-2 border-b-grey_light dark:border-grey_dark w-[100px] h-[30px] hover:bg-primary hover:border-none rounded '>update/edit</button>
+				 className='border  my-2 border-b-grey_light dark:border-grey_dark w-[150px] h-[40px] hover:bg-primary hover:border-none rounded '>update/edit</button>
 			</div>
 		</div>
 			)

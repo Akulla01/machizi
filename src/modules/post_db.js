@@ -100,7 +100,6 @@ class Post_handler {
 		}
 	 } catch (error) {
 		toast.error("there was an error");
-		console.log(error);
 		if(setter){
 			setter(prev=>({
 				

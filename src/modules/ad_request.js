@@ -65,7 +65,8 @@ class Adrequest{
 				toast.error(response.data.message);
 			}
 			} catch (error) {
-				console.log("there was an error");	
+				toast.error("there was an error");	
+				console.log(error);
 			}	
 		}else{
 			this.basic.redirect_user("accounts");

@@ -197,9 +197,7 @@ function Addpost() {
 					)}
 					
 					<button
-					 className={`
-					${step == 1 ? ' rounded w-[100px] h-[40px] border-none bg-accent hover:bg-primary':'border rounded mx-4 hover:border-none hover:bg-primary'}
-					  `} 
+					className='w-[100px] h-[40px] border rounded mx-4 hover:border-none hover:bg-primary' 
 					  onClick={()=>setStep(prev => (prev+=1))}>next</button>
 					  <button className='w-[100px] h-[40px] border rounded mx-4 hover:border-none hover:bg-primary'  onClick={()=>basic.home()}>back home</button>
 				</div>	

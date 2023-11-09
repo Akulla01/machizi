@@ -66,7 +66,8 @@ function handle_delete(id){
 							}}
 							>edit</button>
 							{/* you can use a function of the ad if it satify your use case eg publish satfyies delete */}
-							<button className='w-full h-full border rounded hover:bg-primary hover:border-none' onClick={()=>handle_delete(ads.id)}>delete</button>
+							<button className='w-full h-full border rounded hover:bg-primary hover:border-none'
+							 onClick={()=>handle_delete(ads.id)}>delete</button>
 						</div>
 					</td>
 				</tr>	

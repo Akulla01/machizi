@@ -34,7 +34,7 @@ function Userprofile() {
 		}
 				{
 			user &&(
-				<>		<div className='w-full py-2 min-h-[150px] bg-accent text-light_bg  grid sm:grid-cols-2'>
+				<>	<div className='w-full py-2 min-h-[150px] shadow-2xl text-light_bg  grid sm:grid-cols-2'>
 			<div>
 				<div className='flex flex-row gap-4 items-center'>
 					
