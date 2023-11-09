@@ -8,8 +8,8 @@ import { toast } from 'react-toastify';
 import Banner from "../../src/adselements/Banner";
 
 function Addpost() {
-	const [with_media,setwith_media] = useState(false);
 	const request = new Post_handler();
+	const [step,setStep] = useState(1);
 	const basic = new Basic();
 	const [message,setMessage] = useState({
 		sent:false,
@@ -17,6 +17,8 @@ function Addpost() {
 	});
 	const [userData,setuserData] = useState({
 		post_heading:'',
+		post_tags:'',
+		post_sensitive:"false",
 		post_media:null
 	});
 	const [media,setMedia] = useState({
@@ -29,7 +31,11 @@ function Addpost() {
 			e.preventDefault();
 			  const selectedMedia = e.target.files[0];
 			  const mediaUrl = URL.createObjectURL(selectedMedia);
-			  
+			  setMedia(prev =>({
+				...prev,
+			url:'',
+			type:null
+			}));
 			  setuserData(prev=>({
 				...prev,
 				post_media:selectedMedia
@@ -45,7 +51,7 @@ function Addpost() {
 					...prev,
 				url:mediaUrl,
 				type:'video'
-				}));				
+				}));			
 			  }
 			  if(selectedMedia.type.includes('image')){
 				setMedia(prev =>({
@@ -53,7 +59,8 @@ function Addpost() {
 					url:mediaUrl,
 					type:'image'
 					}));
-			  }  
+			  } 
+			  setStep(prev => (prev+=1));	
 		  };
 		  
 		  
@@ -68,6 +75,8 @@ function Addpost() {
 			var formData = new FormData();
 			formData.append("post_description",userData.post_heading);
 			formData.append("post_media",userData.post_media);
+			formData.append("post_tags",userData.post_tags);
+			formData.append("post_sensitive",userData.post_sensitive);
 			request.post_with_token('create-post',formData,setMessage);
 		  }
 	
@@ -86,41 +95,119 @@ function Addpost() {
 		`}
 		 />
 		):null}
-		<h1 className='text-md font-bold my-4'>Add post</h1>
-		<textarea className=' w-[90%] sm:w-[400px] dark:bg-dark_overlay rounded-sm px-1 mb-4 h-[150px]' onChange={(e)=>setuserData(prev =>({
-			...prev,
-			post_heading:e.target.value
-		}))}
-		 placeholder="what is going on in your university right now?">
-			
-		</textarea>
+		<h1 className='text-md font-bold my-4'>Add post {step} of 5</h1>
 		
 		{
-		with_media && (
+			step == 1 && (
 				<>
-				<label htmlFor="media" className='border my-4 border-dashed p-10 rounded cursor-pointer'><FontAwesomeIcon icon={faImage}/> choose a media</label>
+				<textarea className=' w-[90%] sm:w-[400px] dark:bg-dark_overlay rounded-sm px-1 mb-4 h-[150px]' onChange={(e)=>setuserData(prev =>({
+					...prev,
+					post_heading:e.target.value
+				}))}
+				placeholder="what is going on in your university right now?">
+				</textarea>
+				</>
+			)
+		}
+
+		{
+			step == 2 && (
+				<>
+				<label>use comma to separate tags</label>
+				<span>tags help your videos reach a wide audience</span>
+				<input id="username" 
+					 onChange={(e)=>setuserData(prev =>({
+						...prev,
+						post_tags:e.target.value
+					 }))} 
+					 type="text" 
+					 value={userData.post_tags}
+					 className='w-[300px] min-w-[200px] my-2 h-[40px] shadow-md outline-none rounded focus:border-4   focus:border-primary   focus:text-grey_light'
+					  placeholder='eg: maseno,football,class ' />
+				</>
+			)
+		}
+		
+		{
+			step == 3 && (
+				<>
+				<h1> skip if your post doesn't contains image or video</h1>
+				<label htmlFor="media" className='border my-4 border-dashed p-10 rounded cursor-pointer'><FontAwesomeIcon icon={faImage}/> choose a media  file</label>
 				<input type="file" className='hidden' onChange={handleMediaUpload} id='media' />
 				</>
-		)}
+			)
+		}
 
-		<div className='my-4 font-bold'>
-			<input type="checkbox" onChange={(e)=>setwith_media(!with_media)} id='media' className='accent-primary text-light_bg' />
-			<label htmlFor="media">  add image or video</label>
-			<div>
-				{
-					media.type =='video' && (
-						<video src={media.url} controls className='w-[400px] h-[250px]'></video>
-					)
-				}
-				{
-					media.type =='image' && (
-						<img src={media.url}  className='w-[300px] h-[250px]'/>
-					)
-				}
-			</div>
-		</div>
-		<button className='text-grey_dark hover:bg-accent w-[150px] h-[40px] bg-primary' onClick={handleUpload}>upload</button>
-		<button className='text-grey_dark hover:bg-accent w-[150px] my-4 h-[40px] border hover:border-none' onClick={()=>basic.home()}>back home</button>
+
+			{
+				step == 4 && (
+					<div className='my-4 font-bold'>
+						<h3>your selected image</h3>
+						<div>
+							{
+							media.type =='video' && (
+							<video src={media.url} controls className='w-[400px] h-[250px]'></video>
+							)
+							}
+							{
+							media.type =='image' && (
+							<img src={media.url}  className='w-[300px] h-[250px]'/>
+							)
+							}
+						</div>
+						<div className='flex my-4'>
+							<input type="checkbox"
+							value="true"
+							onChange={(e)=>setuserData(prev =>({
+								...prev,
+								post_sensitive:e.target.value
+							 }))} 
+							id="sensitive" />
+							<label htmlFor="sensitive"> post contain disturbing images or videos</label>
+						</div>
+					</div>	
+				)
+			}
+			
+			
+			{
+				step == 5 && (
+					<div>
+						
+					<button className='text-grey_dark hover:bg-accent w-[150px] h-[40px] bg-primary' onClick={handleUpload}>upload</button>
+					<button
+					className='w-[100px] h-[40px] border rounded mx-4 hover:border-none hover:bg-primary' 
+					  onClick={()=>setStep(prev => (prev-=1))}>
+						previous
+						</button>
+					<button className='text-grey_dark hover:bg-accent w-[150px] my-4 h-[40px] border hover:border-none' onClick={()=>basic.home()}>back home</button>						
+					</div>
+				)
+			}
+			
+			{
+				step !=5 && (
+				<div className='my-10'>
+					{step > 1 && (
+					<button
+					className='w-[100px] h-[40px] border rounded mx-4 hover:border-none hover:bg-primary' 
+					  onClick={()=>setStep(prev => (prev-=1))}>
+						previous
+						</button>						
+					)}
+					
+					<button
+					 className={`
+					${step == 1 ? ' rounded w-[100px] h-[40px] border-none bg-accent hover:bg-primary':'border rounded mx-4 hover:border-none hover:bg-primary'}
+					  `} 
+					  onClick={()=>setStep(prev => (prev+=1))}>next</button>
+					  <button className='w-[100px] h-[40px] border rounded mx-4 hover:border-none hover:bg-primary'  onClick={()=>basic.home()}>back home</button>
+				</div>	
+				)
+			}
+
+
+
 		<br />
 		<br />
 		<span className='text-primary my-2 text-sm'> ⚠currently you can only upload videos less than 20 minutes only</span>

@@ -4,7 +4,7 @@ import Basic from '../modules/basic';
 import Loaderwithmessage from "../loaders/Loaderwithmessage.jsx";
 
 function Publish() {
-	const [step,setStep] = useState(4);
+	const [step,setStep] = useState(1);
 	const [image,setImage] = useState(null);
 	const basic = new Basic();
 	const adrequest = new Adrequest();
