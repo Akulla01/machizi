@@ -6,6 +6,9 @@ import Loaderwithmessage from'../loaders/Loaderwithmessage'
 import Basic from '../modules/basic';
 import { toast } from 'react-toastify';
 import Banner from "../../src/adselements/Banner";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.core.css';
+import 'react-quill/dist/quill.snow.css';
 
 function Addpost() {
 	const request = new Post_handler();
@@ -15,8 +18,9 @@ function Addpost() {
 		sent:false,
 		response:null
 	});
+	const [Value , setValue] = useState("whats going on in your university....");
 	const [userData,setuserData] = useState({
-		post_heading:'',
+		post_heading:Value,
 		post_tags:'',
 		post_sensitive:"false",
 		post_media:null
@@ -26,6 +30,38 @@ function Addpost() {
 		type:null
 	});
 	
+	
+	// modules for the editor [quill-react];
+const modules = {
+    toolbar: [
+    [{ header: [1, 2, 3, 4, 5, 6, false] }],
+    [{ 'size': ['small', false, 'large', 'huge'] }],
+    ['bold', 'italic', 'underline', 'strike'], 
+    [{ color: [] }, { background: [] }],
+    [{ align: [] }],
+    [{ 'font': [] }],
+    [{ list: 'ordered' }, { list: 'bullet' }],
+    ['blockquote', 'code-block'],
+    ['link','video'],
+    [{ script: 'sub' }, { script: 'super' }],
+    [{ indent: '-1' }, { indent: '+1' }],
+    ['clean'],
+    ],
+    clipboard: {
+    matchVisual: false,
+    },
+    'history': {          
+      'delay': 2500,
+      'userOnly': true
+    },
+  };
+	
+  useEffect(()=>{
+	setuserData(prev=>({
+		...prev,
+		post_heading:Value
+	  }));
+  },[Value]);
 		// this function show the preview of the image or video that the user has selected		
 		const handleMediaUpload = (e) => {
 			e.preventDefault();
@@ -99,14 +135,15 @@ function Addpost() {
 		
 		{
 			step == 1 && (
-				<>
-				<textarea className=' w-[90%] sm:w-[400px] dark:bg-dark_overlay rounded-sm px-1 mb-4 h-[150px]' onChange={(e)=>setuserData(prev =>({
-					...prev,
-					post_heading:e.target.value
-				}))}
-				placeholder="what is going on in your university right now?">
-				</textarea>
-				</>
+				<div className='my-10 min-h-[150px] bg-light_overlay dark:bg-dark_overlay text-grey_light dark:text-grey_dark'>
+			<ReactQuill 
+			className=' w-[90%] sm:w-[400px] dark:bg-dark_overlay rounded-sm border-none text-grey_light dark:text-grey_dark h-[100%]'
+			theme="snow" 
+			value={Value} 
+			onChange={setValue}
+			modules={modules}
+			/>
+				</div>
 			)
 		}
 

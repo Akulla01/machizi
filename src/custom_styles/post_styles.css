@@ -1,0 +1,32 @@
+
+#post_description > * {
+	width: 90%;
+	margin-top: 1.2rem;
+}
+#post_description pre{
+	color: #2CCA90;
+	background: #000;
+	padding: 2em;
+	width: 90%;
+	overflow-x: scroll;
+}
+
+#post_description iframe{
+	height: 400px;
+	width: 90%;
+}
+
+#post_description pre::-webkit-scrollbar{
+	width: 10px;
+	height: 10px;
+	border-radius: 20px;
+	background: transparent;
+}
+
+#post_description pre::-webkit-scrollbar-thumb{
+	width: 10px;
+	height: 10px;
+	border-radius: 10px;
+	background:lightgrey;
+	margin: 1rem;
+}

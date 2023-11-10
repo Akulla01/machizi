@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import Loader from '../loaders/Loader'
 import Basic from '../modules/basic';
+import "../custom_styles/post_styles.css";
 
 function Postheading({heading,profile,username,time,id}) {
 	const basic = new Basic();
@@ -19,8 +20,8 @@ function Postheading({heading,profile,username,time,id}) {
 				<span className='text-[12px] text-grey_light  dark:text-grey_dark'>posted on:{time}</span>
 			</h3>
 		</div>
-		<div className='w-full min-h-[20px] font-bold text-sm mb-4'>
-			<p className='w-[90%] mx-4'>{heading}</p>
+		<div className='w-[100%] min-h-[20px] font-bold text-sm mb-4'>
+			<div className='w-full mx-4' id='post_description' dangerouslySetInnerHTML={{__html:heading}}></div>
 		</div>
 	</div>
   )
