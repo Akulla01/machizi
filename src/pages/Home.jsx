@@ -11,6 +11,7 @@ import Banner from '../adselements/Banner'
 import Inbuilt from '../adselements/Inbuilt'
 import Offline from '../components/Offline'
 import Online from '../components/Online'
+import Note from '../components/Note'
 
 function Home() {
   const post_request = new Post_handler();
@@ -22,6 +23,7 @@ function Home() {
   const [newpost,setNewpost] = useState([]);
   const theme = localStorage.getItem('theme');
   const [isOnline,setisOnline] = useState(null);
+  const closed = localStorage.getItem('closed');
   
   
   useEffect(()=>{
@@ -98,9 +100,15 @@ function Home() {
           <Followercomponent/>
           {/* reccommeded post first */}
           {/* banner ads to be displayed here*/}
-          <Banner
+          {/* <Banner
           isGlobal={false}
-            />
+            /> */}
+            {
+              !closed && (
+                <Note/>
+              )
+            }
+            
           {
             rec_newpost?.length !== 0 &&(
              <h3 className='text-md dark:text-light_bg my-4 text-primary font-bold mx-4 sm:mx-[5%]'>from your following</h3> 
@@ -145,13 +153,13 @@ function Home() {
             newpost?.map(userpost=>(
               <>
              <Post key={userpost.id} id={userpost.user_id} userpost={userpost}/> 
-             {
+             {/* {
               userpost.id % 6 == 0 && (
                 // if the add is going to be shown everywhere then is global is set to true
                 // if its going to be shown on the homepage only then isglobal is false
                 <Inbuilt isGlobal={true} />
               )
-             }
+             } */}
              </>
             ))
           }              
