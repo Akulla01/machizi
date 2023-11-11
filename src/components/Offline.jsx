@@ -16,7 +16,7 @@ function Offline() {
 	${hide && 'hidden'}
 	 h-[60px] bg-crimson text-light_bg fixed bottom-2 left-2 rounded-md shadow-md flex items-center justify-around`}>
 		<FontAwesomeIcon icon={faGlobe}/>
-		<span> you are  offline now</span>
+		<span>offline</span>
 		<FontAwesomeIcon className='cursor-pointer bg-overlay rounded-[100vh] p-2 w-[10px] h-[10px]' onClick={()=>setHide(true)} icon={faX}/>
 	</div>
   )

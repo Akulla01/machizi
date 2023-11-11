@@ -13,11 +13,11 @@ export default function Dropdown() {
 		<Link className='px-4 my-4 w-[90%]  hover:text-accent  font-bold' to="/profile"> <FontAwesomeIcon icon={faUser}/> go to profile</Link>
 		<Link className='px-4 my-4 w-[90%]  hover:text-accent  font-bold' to="/create-post"><FontAwesomeIcon icon={faUpload}/> create post</Link>
 		<Link className='px-4 my-4 w-[90%]  hover:text-accent  font-bold' to="/accounts"><FontAwesomeIcon  icon={faSignIn}/> accounts</Link>
-		{
+		{/* {
 			is_token && (
 			<Link className='px-4 my-4 w-[90%]  hover:text-accent  font-bold' to="/advertisement"><FontAwesomeIcon  icon={faAd}/> advertisements</Link>	
 			)
-		}
+		} */}
 		
 		<button className='px-4 my-4 w-[90%]  hover:text-accent  font-bold' onClick={()=>delete_token()} >Log out</button>
 	</div>

@@ -87,7 +87,7 @@ function Profile() {
 				<Reported reported={reported}/>
 			)
 		}
-		<Banner isGlobal={true}/>
+		{/* <Banner isGlobal={true}/> */}
 		{reported.length !== 0 &&(
 		<center><button onClick={
 			()=>window.location.href ="reports"
@@ -104,11 +104,11 @@ function Profile() {
 				<div>
 				<button onClick={()=>post_request.post_with_token('delete-post',{post_id:userpost.id})} className='active:bg-accent w-[100px] mx-20 h-[40px] bg-primary dark:text-grey_dark text-grey_light'><FontAwesomeIcon icon={faTrash}/> delete post</button>
 				</div>
-				{
+				{/* {
               userpost.id %6 === 0 && (
                 <Inbuilt isGlobal={true}/>
               )
-             }
+             } */}
 				</>
               
 			 

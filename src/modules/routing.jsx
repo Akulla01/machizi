@@ -17,10 +17,10 @@ import Addashboard from '../pages/advertisement/Addashboard'
 			path: '/accounts',
 			component : <Accounts/>
 		},
-		{
-			path: '/advertisement',
-			component : <Addashboard/>
-		},
+		// {
+		// 	path: '/advertisement',
+		// 	component : <Addashboard/>
+		// },
 		{
 			path: '/terms',
 			component : <Terms/>
