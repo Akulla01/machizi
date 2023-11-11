@@ -1,6 +1,6 @@
 import React from 'react'
 import '../custom_styles/post.css';
-import Postheading from './postheading';
+import Postheading from './Postheading';
 import Postbody from './Postbody';
 import Postcontrols from './Postcontrols';
 import Postcomment from './Postcomment';
