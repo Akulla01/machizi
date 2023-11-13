@@ -11,7 +11,6 @@ import Banner from '../adselements/Banner'
 import Inbuilt from '../adselements/Inbuilt'
 import Offline from '../components/Offline'
 import Online from '../components/Online'
-import Note from '../components/Note'
 
 function Home() {
   const post_request = new Post_handler();
@@ -23,7 +22,6 @@ function Home() {
   const [newpost,setNewpost] = useState([]);
   const theme = localStorage.getItem('theme');
   const [isOnline,setisOnline] = useState(null);
-  const closed = localStorage.getItem('closed');
   
   
   useEffect(()=>{
@@ -103,11 +101,7 @@ function Home() {
           {/* <Banner
           isGlobal={false}
             /> */}
-            {
-              !closed && (
-                <Note/>
-              )
-            }
+
             
           {
             rec_newpost?.length !== 0 &&(
