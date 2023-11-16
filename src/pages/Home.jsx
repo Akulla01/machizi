@@ -21,6 +21,7 @@ function Home() {
   const[view_non_following,setview_non_following] = useState(false);
   const [newpost,setNewpost] = useState([]);
   const theme = localStorage.getItem('theme');
+  const [reloads,setReloads] = useState(false);
   const [isOnline,setisOnline] = useState(null);
   
   
@@ -67,11 +68,17 @@ function Home() {
     window.addEventListener('online',networkStatus);
     window.addEventListener('offline',networkStatus);
     window.addEventListener('load',networkStatus);
+    
+    var reload = setTimeout(()=>{
+      setReloads(true);
+    },10000);
+    
     return ()=>{
       window.removeEventListener('scroll',handle_infinite);
       window.addEventListener('offline',networkStatus);
       window.addEventListener('online',networkStatus);
       window.removeEventListener('load',networkStatus);
+      clearTimeout(reload);
     }
   },[]);
   return (
@@ -84,7 +91,14 @@ function Home() {
         <h3 className='text-[14px]'>More connected,more fun</h3>
         <br />
         <Loader/>
+        {
+          reloads && (
+            <button className='w-[150px] bg-primary h-[40px] rounded my-4 text-grey_dark' onClick={()=>window.location.reload()}>reload</button>
+          )
+        }
+        
       </div> 
+       
       </div>    
     )}
     
@@ -119,11 +133,11 @@ function Home() {
             rec_newpost?.map(userpost=>(
               <>
              <Post key={userpost.id} id={userpost.id}  userpost={userpost}/> 
-             {
+{/*              {
               userpost.id %6 === 0 && (
                 <Inbuilt isGlobal={false}/>
               )
-             }
+             } */}
              </>
             ))
           }
