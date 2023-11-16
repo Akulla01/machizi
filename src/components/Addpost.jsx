@@ -233,11 +233,11 @@ function Addpost() {
 
         {step == 5 && (
           <div>
-            <button className='text-grey_dark hover:bg-accent w-[150px] h-[40px] bg-primary' onClick={handleUpload}>upload</button>
-            <button className='w-[100px] h-[40px] border rounded mx-4 hover:border-none hover:bg-primary' onClick={() => setStep((prev) => (prev -= 1))}>
+            <button className='text-grey_dark hover:bg-accent w-full my-2 rounded sm:w-[150px] h-[40px] bg-primary' onClick={handleUpload}>upload</button>
+            <button className='w-full my-2 rounded sm:w-[150px] h-[40px] border hover:border-none hover:bg-primary' onClick={() => setStep((prev) => (prev -= 1))}>
               previous
             </button>
-            <button className='text-grey_dark hover:bg-accent w-[150px] my-4 h-[40px] border hover:border-none' onClick={() => basic.home()}>back home</button>
+            <button className='text-grey_dark hover:bg-accent w-full my-2 rounded sm:w-[150px]  h-[40px] border hover:border-none' onClick={() => basic.home()}>back home</button>
           </div>
         )}
 
