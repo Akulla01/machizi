@@ -14,3 +14,15 @@ body::-webkit-scrollbar-thumb{
 	background:#3D3A3A;
 	border-radius: 20px;
 }
+
+#div_scroll::-webkit-scrollbar{
+	display:block;
+	width: 10px;
+	padding: 2px;
+	border-radius:20px;
+}
+
+#div_scroll::-webkit-scrollbar-thumb{
+	background:#3D3A3A;
+	border-radius: 20px;
+}

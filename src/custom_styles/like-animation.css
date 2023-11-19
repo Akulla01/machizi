@@ -20,10 +20,5 @@
 }
 
 @keyframes fly {
-	0%{margin-left: 24px;}
-	20%{margin-left: 0px;}
-	40%{margin-left: 24px;}
-	60%{margin-left: 0px;}
-	80%{top: -20000%; position: absolute;}
-	100%{top:0px; position: relative;}
+0%{background: white;}
 }

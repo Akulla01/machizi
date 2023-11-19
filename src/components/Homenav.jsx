@@ -48,7 +48,7 @@ export default function Homenav() {
 						
 						<div className={`${!showSearch && 'hidden'} absolute w-[250px] top-10 z-10 right-0`}>
 							
-							<Searchfollower search_param={search_param} show={setshowSearch}/>
+							<Searchfollower search_param={search_param.toLowerCase()} show={setshowSearch}/>
 						</div>
 						
 				</li>
@@ -63,7 +63,7 @@ export default function Homenav() {
 					${isNew && 'animate-pulse  text-primary'}
 					 `} onClick={()=>setShownotification(!shownotification)}><FontAwesomeIcon icon={faBell}/> <span className='hidden sm:block'>notification</span></span>
 					<div className={`${!shownotification && 'hidden'} absolute w-full sm:w-[400px] top-10 z-10 right-0`}>
-							<Notificationcomponent new_setter={setisNew}/>
+							<Notificationcomponent new_setter={setisNew} show={setShownotification}/>
 						</div>
 				</li>
 				<li>

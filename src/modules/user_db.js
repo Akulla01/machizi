@@ -139,8 +139,6 @@ class User {
 		 } catch (error) {
 			toast.error("unable to perform opereations");
 		 }
-		}else{
-			toast.error("you are logged out");
 		}
 		}
 }
