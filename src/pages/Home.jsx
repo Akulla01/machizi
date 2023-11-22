@@ -5,12 +5,13 @@ import Post from '../components/Post'
 import Post_handler from '../modules/post_db'
 import Infinite from '../modules/infinite'
 import Followercomponent from '../components/Followercomponent'
-import { ToastContainer } from 'react-toastify'
+import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import Banner from '../adselements/Banner'
 import Inbuilt from '../adselements/Inbuilt'
 import Offline from '../components/Offline'
 import Online from '../components/Online'
+import logo from "../assets/logo_with_bg.png";
 
 function Home() {
   const post_request = new Post_handler();
@@ -22,7 +23,7 @@ function Home() {
   const [newpost,setNewpost] = useState([]);
   const theme = localStorage.getItem('theme');
   const [reloads,setReloads] = useState(false);
-  const [isOnline,setisOnline] = useState(null);
+  const [isOnline,setisOnline] = useState(true);
   
   
   useEffect(()=>{
@@ -34,7 +35,9 @@ function Home() {
       setview_non_following(true);
     }
   }
-    
+  
+
+  
   useEffect(()=>{
     setrec_newpost(rec_posts ?rec_posts.slice(0,perpage):null);
     automatically_reccommend();
@@ -68,7 +71,6 @@ function Home() {
     window.addEventListener('online',networkStatus);
     window.addEventListener('offline',networkStatus);
     window.addEventListener('load',networkStatus);
-    
     var reload = setTimeout(()=>{
       setReloads(true);
     },10000);
@@ -132,7 +134,7 @@ function Home() {
           {
             rec_newpost?.map(userpost=>(
               <>
-             <Post key={userpost.id} id={userpost.id}  userpost={userpost}/> 
+             <Post key={userpost.id} id={userpost.user_id}  userpost={userpost}/> 
 {/*              {
               userpost.id %6 === 0 && (
                 <Inbuilt isGlobal={false}/>

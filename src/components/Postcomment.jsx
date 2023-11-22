@@ -4,7 +4,6 @@ function Postcomment({comment,username}) {
 	const [perpage,setPerpage] = useState(1);
 	const [newcomment,setNewcomment] = useState([]);
 	const [hide_comment,sethide_comment] = useState(false);
-	
 	useEffect(()=>{
 	  setNewcomment(comment ?comment.slice(0,perpage):null);
 	},[comment]);
@@ -37,7 +36,7 @@ function Postcomment({comment,username}) {
 			<>
 			<div className='w-full flex items-center gap-2  mb-4 cursor-pointer' onClick={()=>window.location.href=`/user-profile/${username}/${eachcomment.user_id
 }`}>
-			<img src={eachcomment.profile} className='w-[30px] h-[30px] rounded-[100vh] bg-grey_light object-cover' alt="" />
+			<img src={eachcomment.profile} className='w-[30px] h-[30px] rounded-[100vh] bg-grey_light object-cover'/>
 			<h3 >
 			<span className='text-md text-grey_light font-bold font-roboto flex flex-col dark:text-light_bg'>{eachcomment.user_name}</span>
 			<span className='text-[12px] text-grey_light  dark:text-grey_dark'>posted on: {eachcomment.created_at}</span>

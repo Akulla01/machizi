@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGlobe, faInfo, faPause, faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faGlobe, faInfo, faPause, faPlay, faWarning } from '@fortawesome/free-solid-svg-icons';
 import Loader from '../loaders/Loader';
 import Video from '../modules/video';
 import Videoinfo from './Videoinfo';
 
 
-function Postbody({type,url,id}) {
+function Postbody({type,url,id,sensitive}) {
 	
 	var videoRef = useRef();
 	const [playing,setPlaying] = useState(false);

@@ -1,16 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBell, faMoon, faSearch, faSun, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faBell, faMoon, faSearch, faSun, faUser,faX } from '@fortawesome/free-solid-svg-icons';
 import Dropdown from './Dropdown';
 import Searchfollower from './Searchfollower';
 import Notificationcomponent from './Notificationcomponent';
 import Basic from '../modules/basic';
+import useToken from '../modules/useToken';
 
 export default function Homenav() {
 	const [showDrop,setshowDrop] = useState(false);
 	const [showSearch,setshowSearch] = useState(false);
 	const basic = new Basic();
 	const [search_param,setsearch_param] = useState('');
+	const [show_pop,setshow_pop] = useState(true);
+	const {is_token} = useToken();
 	const [shownotification,setShownotification] = useState(false);
 	const [isNew,setisNew] = useState(false);
 	const dropref = useRef();
@@ -75,6 +78,21 @@ export default function Homenav() {
 				{showDrop && (
 					<Dropdown/>	
 				)}
+				
+				{
+					!is_token && show_pop && (
+						<div className='absolute b-[-10px] shadow-md rounded-md p-4 w-[200px] right-2 flex flex-col bg-primary text-grey_dark'>
+							<div className='w-[10px] h-[10px]  bg-primary absolute top-[-5px] right-2 transform rotate-45'></div>
+							<div className='flex  gap-4'>
+								<span className='w-[80%] text-[14px]'>
+									create your account
+								</span>
+								
+								<span onClick={()=>setshow_pop(false)} className='cursor-pointer text-sm w-[20px] flex items-center justify-center h-[20px] rounded-[100vh] shadow-md bg-accent'><FontAwesomeIcon icon={faX}/></span>
+							</div>
+						</div>
+					)
+				}
 					</div>	
 				</li>
 						</>

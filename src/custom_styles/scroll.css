@@ -3,6 +3,10 @@
 	display:none;
 }
 
+#hide::-webkit-scrollbar{
+	display:none;
+}
+
 body::-webkit-scrollbar{
 	display:block;
 	width: 10px;

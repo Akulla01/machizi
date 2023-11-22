@@ -48,7 +48,8 @@ class User {
 			toast.error(response.data.message);
 		}
 	 } catch (error) {
-		toast.error("try again in a moment");
+		console.log(error);
+		toast.error("we are working on this error");
 	 }}
 	 
 	 
@@ -109,6 +110,7 @@ class User {
 			toast.error(response.data.message);
 		}
 	 } catch (error) {
+		console.log(error);
 		toast.error("error in retrieving user");
 	 }
 	}else{
