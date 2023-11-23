@@ -99,7 +99,8 @@ class Post_handler {
 			}
 		}
 	 } catch (error) {
-		toast.error("there was an error");
+		toast.error("unable to create post at this moment...try later");
+		console.log(error);
 		if(setter){
 			setter(prev=>({
 				

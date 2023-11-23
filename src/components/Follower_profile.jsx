@@ -46,7 +46,7 @@ function Follower_profile({followersProfiles,user,show,viewall}) {
 				<div className='my-4 flex items-center flex-col justify-center w-full'>
 				<h3>grow your followers..share link</h3>
 				<div className='flex items-center my-10'>
-				<input type="text" id='link' className='overflow-x-scroll w-[200px] h-[30px]' value={`https://machizi.kodesfusion.com/${user?.name}/${user?.id}`} disabled />
+				<input type="text" id='link' className='overflow-x-scroll w-[200px] h-[30px]' value={`https://machizi.kodesfusion.com/user-profile/${user?.name}/${user?.id}`} disabled />
 				 <button className='text-grey_dark w-[100px] bg-primary h-[30px] rounded-tr-md rounded-br-md' onClick={copyLink}> <FontAwesomeIcon icon={faCopy}/> &nbsp;copy link</button>
 				</div>
 				
@@ -56,7 +56,7 @@ function Follower_profile({followersProfiles,user,show,viewall}) {
 
 
 				{
-					followersProfiles?.length > 5 && (
+					followersProfiles?.length >= 5 && (
 				<center><button className='w-[150px] h-[40px] bg-primary text-grey_dark rounded my-4' onClick={()=>viewall(true)}>view all</button></center>						
 					)
 				}
