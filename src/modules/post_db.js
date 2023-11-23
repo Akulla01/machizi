@@ -54,7 +54,7 @@ class Post_handler {
 		setter(null);
 		}
 	 } catch (error) {
-		console.log("there was an error");	
+		console.log("there was an error",error);	
 	 }			
 		}else{
 			setter(null);

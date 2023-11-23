@@ -17,7 +17,7 @@ export default function Post({userpost,id,status}) {
 	}
   return (
 	<div id="post" className='w-full sm:w-[90%] sm:p-2 sm:mx-[5%] md:w-[70%] md:mx-[10%] min-h-[100px] my-10 mb-0'>
-			{userpost.post_sensitive ==1 && !showsensitive && (
+		{userpost?.post_sensitive ==1 && !showsensitive ? (
 		<div className='w-full h-[400px] bg-crimson text-grey_dark my-4 flex flex-col rounded items-center justify-center'>
 			
 			<FontAwesomeIcon className='text-[40px] my-4' icon={faWarning}/>
@@ -25,35 +25,33 @@ export default function Post({userpost,id,status}) {
 			<span className='my-2'>sensitive post </span>
 			<button className='border rounded hover:text-grey_light h-[40px] p-2' onClick={sensitiveEnable}>show anyways</button>
 		</div>
-	) }
-	
-	{
-		userpost.post_sensitive == 0 && (
-			<>
-			<Postheading
-		time={userpost.created_at}
-		heading={userpost.post_description}
-		 profile={userpost.profile}
-		  username={userpost.user_name}
+	) 
+	:
+	<>
+	<Postheading
+		time={userpost?.created_at}
+		heading={userpost?.post_description}
+		 profile={userpost?.profile}
+		  username={userpost?.user_name}
 		  id={id}
 		  />	
 		<Postbody
 		type={media_type}
-		url={userpost.post_media}
+		url={userpost?.post_media}
 		id={id}
 		/>
 		<Postcontrols
-		id={userpost.id}
-		 likes={userpost.likes}
-		  comments={userpost.comments.length}
+		id={userpost?.id}
+		 likes={userpost?.likes}
+		  comments={userpost?.comments.length}
 		  />
-		  <Postcomment username={userpost.user_name} 
-		  comment={userpost.comments}
+		  <Postcomment username={userpost?.user_name} 
+		  comment={userpost?.comments}
 		   />
-			</>
-		)
-	}
-		
+	</>
+}
+	
+			
 	 </div>
   )
 }
