@@ -7,7 +7,6 @@ import Videoinfo from './Videoinfo';
 
 
 function Postbody({type,url,id,sensitive}) {
-	
 	var videoRef = useRef();
 	const [playing,setPlaying] = useState(false);
 	const [currentTime, setCurrentTime] = useState(0);

@@ -29,6 +29,7 @@ function Profile() {
 	const [perpage,setPerpage] = useState(2);
 	const [newpost,setNewpost] = useState(post ? post?.slice(0,perpage) : []);
 	const [reported,setReported] = useState([]);
+	const [myreported,setMyreported] = useState([]);
 	const [bio,setBio] = useState('hey am using machizi.what about you');
 	const [overlay,setOverlay] = useState(false);
 	const [expand,setExpand] = useState(false);
@@ -36,14 +37,13 @@ function Profile() {
 	const[bioMessage,setbioMessage] = useState(false);
 	const [followersProfiles,setfollowersProfiles] = useState([]);
 	const {decrypted} = useToken();
-	const [id,setId] = useState(null);
 	const basic = new Basic();
 	const navigate = useNavigate();
 	const theme = localStorage.getItem('theme');
 	useEffect(()=>{
 		request.get_user(setUser);
-		setId(decrypted.split("|")[0]);
 		request.edit_user("retrieve-reported-videos",null,setReported);
+		request.edit_user("my-reported-videos",null,setMyreported);
 	},[]);
 	useEffect(()=>{
 		setNewpost(post?.slice(0,perpage));
@@ -151,16 +151,18 @@ function Profile() {
 			</div>
 		</div>
 		
-			<Follower_profile user={user} followersProfiles={followersProfiles} show={true} id={id}/>
+			<Follower_profile user={user} followersProfiles={followersProfiles} show={true} />
 		
 		{/* if the user content has not been reported there is no need to show the user this
 		dialog  for reported */}
 		{
-			reported !== null || reported.length !== 0 && (
-				<Reported reported={reported}/>
+			myreported.length > 0 && (
+				<Reported reported={myreported}/>
 			)
 		}
+		{/* your videos that have been repor */}
 		{/* <Banner isGlobal={true}/> */}
+		{/* other peoples videos that you have reported */}
 		{reported.length !== 0 &&(
 		<center><button onClick={
 			()=>window.location.href ="reports"

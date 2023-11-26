@@ -54,7 +54,7 @@ function Reported({reported}) {
 		<button className='w-[150px] h-[40px] border rounded' onClick={()=>setShow(false)}>close popup</button>
 		</center>
 		
-        <div className='w-full sm:w-[80%] sm:mx-[10%] my-10 md:w-[60%] md:mx-[20%]'>
+        <div className='text-grey_dark w-full sm:w-[80%] sm:mx-[10%] my-10 md:w-[60%] md:mx-[20%]'>
 		{
 			reported?.map(videoreported =>(
 				<div key={videoreported.id}>

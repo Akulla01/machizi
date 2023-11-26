@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react'
 
 function Postcomment({comment,username}) {
+	useEffect(()=>{
+		console.log(comment);
+	},[comment]);
+	
 	const [perpage,setPerpage] = useState(1);
 	const [newcomment,setNewcomment] = useState([]);
 	const [hide_comment,sethide_comment] = useState(false);

@@ -33,12 +33,12 @@ export default function Post({userpost,id,status}) {
 		heading={userpost?.post_description}
 		 profile={userpost?.profile}
 		  username={userpost?.user_name}
-		  id={id}
+		  id={userpost.user_id}
 		  />	
 		<Postbody
 		type={media_type}
 		url={userpost?.post_media}
-		id={id}
+		id={userpost?.id}
 		/>
 		<Postcontrols
 		id={userpost?.id}
