@@ -11,6 +11,7 @@ import Profileexpand from '../../components/Profileexpand';
 import Basic from '../../modules/basic';
 import Follower_profile from '../../components/Follower_profile';
 import Viewmorefollowers from '../../components/Viewmorefollowers';
+import useToken from '../../modules/useToken';
 
 
 function Userprofile() {
@@ -24,13 +25,18 @@ function Userprofile() {
 	const basic = new Basic();
 	const [expand,setExpand] = useState(false);
 	const payload ={master_id:user_params?.id};
+	const {is_token} = useToken();
 	useEffect(()=>{
-		request.get_profile("get-user-profile",payload,setUser);
+		if(is_token){
+		request.get_profile_with_token("get-user-profile-with-token",payload,setUser);
+		}else{
+		request.get_profile("get-user-profile",payload,setUser);	
+		}
 	},[]);
 	useEffect(()=>{
 		setPost(user?.user_post);
 		setfollowersProfiles(user?.followers_profiles);
-		console.log(followersProfiles);
+		console.log(user);
 	},[user]);
 	
   return (
@@ -62,20 +68,22 @@ function Userprofile() {
 					
 					<img src={user?.profile} onClick={()=>setExpand(true)} className='w-[60px] h-[60px] sm:w-[60px] sm:h-[60px] rounded-[100vh] object-cover mx-4 my-2 cursor-pointer' alt="" />
 					<div>
-					<h1 className='font-bold text-md sm:text-4xl my-2'>{user_params?.name}</h1>
+					<h1 className='font-bold text-md sm:text-4xl my-2'>{user?.name}</h1>
 					<div className='flex w-full items-center gap-4'>
 						<span className='text-sm font-thin dark:text-grey_dark '>{user?.followers} followers</span>
 						<span className='text-sm font-thin dark:text-grey_dark '>{post?.length} posts</span>
 					</div>
 					<div className='flex gap-4 my-4 items-center w-[90%]'>
-					<span className='w-[80%]'>{basic.truncate("👋hey am on machizi....and I love it ")}</span>
+					<span className='w-[80%]'>{!user?.bio ? basic.truncate("👋hey am on machizi....and I love it "):basic.truncate(user?.bio)}</span>
 					</div>
 					</div>
 				</div>
 			</div>
 			<div className='flex items-center justify-center'>
 				<button onClick={()=>navigate('/')} className='mx-2 border border-light_bg dark:text-grey_dark text-sm hover:text-grey_dark bg-primary font-bold p-2 rounded-md hover:bg-accent'><FontAwesomeIcon icon={faHome}/> back home</button>
-				<button onClick={()=>request.edit_user("manage-followers",payload)} className='mx-2 border border-light_bg dark:text-grey_dark text-sm hover:text-grey_dark bg-primary font-bold p-2 rounded-md hover:bg-accent'>follow</button>
+				<button onClick={()=>request.edit_user("manage-followers",payload)} className={`mx-2 border border-light_bg dark:text-grey_dark text-sm hover:text-grey_dark 
+				${user?.is_following ? 'bg-basic shadow-md rounded text-grey_light dark:bg-overlays dark:text-primary':'bg-light_overlay'}
+				 font-bold p-2 rounded-md hover:bg-accent`}>{user?.is_following ? 'unfollow' : 'follow'}</button>
 			</div>
 		</div>
 		<Follower_profile 
@@ -118,11 +126,6 @@ function Userprofile() {
 			
 			</>
 		}
-		
-		
-		
-		
-		
 	</div>
   )
 }

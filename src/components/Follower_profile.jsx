@@ -12,15 +12,11 @@ function Follower_profile({followersProfiles,user,show,viewall}) {
 		toast.success("link copied");
 	}
 	
-	useEffect(()=>{
-		console.log(followersProfiles);
-	},[followersProfiles]);
-	
   return (
 	<>
 			{/* followers list */}
 			<div className='w-full min-h-[100px] bg-gradient-to-r from-primary to-accent flex items-center flex-col justify-center text-grey_dark'>
-			<h3 className='font-bold my-4 text-xl'>followers / wafuasi 😎</h3>
+			<h3 className='font-bold my-4 text-xl'>followers</h3>
 			<div>
 				
 				{

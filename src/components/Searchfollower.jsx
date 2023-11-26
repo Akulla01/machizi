@@ -10,6 +10,7 @@ function Searchfollower({search_param,show}){
 	const [new_profile,setnew_profile] = useState(null);
 	const request = new User();
 	const basic = new Basic();
+	const [users_at_a_time,setusers_at_a_time] = useState(5);
 		
 	useEffect(()=>{
 		request.get_profile("all-users",null,setProfiles);
@@ -47,7 +48,7 @@ function Searchfollower({search_param,show}){
 			)
 		}
 		{profiles && (
-			new_profile?.map(each_follower =>(
+			new_profile?.slice(0,users_at_a_time).map(each_follower =>(
 				<div onClick={()=>basic.redirect_to_profile(each_follower.user_name,each_follower.user_id)} 
 				key={each_follower.user_id} className='w-[90%] h-[80px] my-2 rounded p-2 flex items-center cursor-pointer bg-gradient-to-r hover:transition-all hover:duration-500 hover:bg-gradient-to-l from-primary to-accent mx-4'>
 				<img className='w-[60px] h-[60px] rounded-[100vh] object-cover bg-grey_light hover:border-primary' src={each_follower.profile}  />
@@ -59,7 +60,7 @@ function Searchfollower({search_param,show}){
 			</div>
 			))
 		)}
-		<button onClick={()=>setusers_at_a_time(prev=>prev+=2)} className='w-full my-4 bg-primary text-light_bg hover:text-dark h-[40px] mb-0'>load more</button>
+		<button onClick={()=>setusers_at_a_time(prev=>prev+=5)} className='w-full my-4 bg-primary text-light_bg hover:text-dark h-[40px] mb-0'>load more</button>
 	</div>
   )
 }

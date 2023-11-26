@@ -88,7 +88,8 @@ export default function Homenav() {
 									create your account
 								</span>
 								
-								<span onClick={()=>setshow_pop(false)} className='cursor-pointer text-sm w-[20px] flex items-center justify-center h-[20px] rounded-[100vh] shadow-md bg-accent'><FontAwesomeIcon icon={faX}/></span>
+								<span onClick={()=>setshow_pop(false)} className='cursor-pointer text-sm w-[20px] flex items-center justify-center h-[20px] rounded-[100vh] shadow-md bg-accent'>
+								<FontAwesomeIcon icon={faX}/></span>
 							</div>
 						</div>
 					)

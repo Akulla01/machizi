@@ -37,10 +37,17 @@ class User {
 	  a get profile function it can be used to request for data
 	   that does not require user to be authenticated in order 
 	  to access */
-	 async get_profile(path,object,setter){
+	  /* get the user profile if the person requesting is already logged in so that we can know if he is following him or not */
+	  async get_profile_with_token(path,object,setter){
+		
 		var response;
 	 try {
-		 response = await axios_http.post(path,object);
+			response = await axios_http.post(path,object,{
+				headers: {
+					'Authorization': `Bearer ${this.userToken}`
+				  }
+			 });
+		
 		if(response.data.success){
 			toast.success(response.data.message);
 			setter(response.data.data);
@@ -49,7 +56,24 @@ class User {
 		}
 	 } catch (error) {
 		console.log(error);
-		toast.error("we are working on this error");
+		toast.error("unable to retrieve this profile at this time");
+	 }}
+	 
+	 
+	 /* if the person requesting has no token then this function applies */
+	 async get_profile(path,object,setter){
+		var response;
+	 try {
+		response = await axios_http.post(path,object);
+		if(response.data.success){
+			toast.success(response.data.message);
+			setter(response.data.data);
+		}else{
+			toast.error(response.data.message);
+		}
+	 } catch (error) {
+		console.log(error);
+		toast.error("unable to retrieve this profile at this time");
 	 }}
 	 
 	 

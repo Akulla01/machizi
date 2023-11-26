@@ -13,7 +13,7 @@ function Viewmorefollowers({ followers,close}) {
   return (
     <div>
       <Homenav />
-	  <button onClick={()=>close(false)}>close popup</button>
+	  <button className='my-4 w-[150px] h-[40px] rounded bg-primary hover:bg-accent text-grey_dark' onClick={()=>close(false)}>close popup</button>
       <h1 className="text-center text-2xl font-bold mb-4">All Followers</h1>
       <div className="w-full flex flex-wrap justify-center gap-4 my-10 px-4">
         {followers?.slice(0, displayedFollowers).map((each_follower) => (
