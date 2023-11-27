@@ -39,7 +39,6 @@ class User {
 	  to access */
 	  /* get the user profile if the person requesting is already logged in so that we can know if he is following him or not */
 	  async get_profile_with_token(path,object,setter){
-		
 		var response;
 	 try {
 			response = await axios_http.post(path,object,{
