@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
 function Postcomment({comment,username}) {
-	useEffect(()=>{
-		console.log(comment);
-	},[comment]);
 	
 	const [perpage,setPerpage] = useState(1);
 	const [newcomment,setNewcomment] = useState([]);
@@ -34,7 +31,7 @@ function Postcomment({comment,username}) {
 	}
 	
   return (
-	<div className='w-full my-4 ml-2 sm:ml-10 dark:text-grey_dark'>		
+	<div className='w-full my-4 ml-2 sm:ml-10'>		
 		{
 		newcomment?.map(eachcomment=>(
 			<>

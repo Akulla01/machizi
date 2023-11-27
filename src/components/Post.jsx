@@ -16,7 +16,7 @@ export default function Post({userpost,id,status}) {
 		setshowsensitive(true);
 	}
   return (
-	<div id="post" className='w-full sm:w-[90%] sm:p-2 sm:mx-[5%] md:w-[70%] md:mx-[10%] min-h-[100px] my-10 mb-0'>
+	<div id="post" className='w-full sm:w-[90%] sm:p-2 sm:mx-[5%] md:w-[70%] md:mx-[10%] min-h-[100px] mt-[5rem]'>
 		{userpost?.post_sensitive ==1 && !showsensitive ? (
 		<div className='w-full h-[400px] bg-crimson text-grey_dark my-4 flex flex-col rounded items-center justify-center'>
 			

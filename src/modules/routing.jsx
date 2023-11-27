@@ -7,11 +7,20 @@ import Userprofile from '../pages/profile/Userprofile'
 import Reports from '../components/Reports'
 import Terms from '../pages/terms/Terms'
 import Addashboard from '../pages/advertisement/Addashboard'
+import Wallet from '../wallet/main/Wallet'
  
 	const routes =[
 		{
 			path: '/',
 			component : <Home/>
+		},
+		{
+			path: '/*',
+			component : <Home/>
+		},
+		{
+			path: '/my-wallet',
+			component : <Wallet/>
 		},
 		{
 			path: '/accounts',
