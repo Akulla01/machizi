@@ -4,6 +4,7 @@ import { faGlobe, faInfo, faPause, faPlay, faWarning } from '@fortawesome/free-s
 import Loader from '../loaders/Loader';
 import Video from '../modules/video';
 import Videoinfo from './Videoinfo';
+import Bubbleloader from '../loaders/Bubbleloader';
 
 
 function Postbody({type,url,id,sensitive}) {
@@ -12,9 +13,20 @@ function Postbody({type,url,id,sensitive}) {
 	const [currentTime, setCurrentTime] = useState(0);
 	const [duration, setDuration] = useState(0);
 	const [showInfo,setshowInfo] = useState(false);
+	const[loading,setLoading] = useState(true);
 	const video_manipulator = new Video();
 	const [isOnline,setisOnline] = useState(true);
 	
+	
+	const handleWaiting = () => {
+		// Video is buffering, show loader
+		setLoading(true);
+	  };
+  
+	  const handleCanPlay = () => {
+		// Enough data is available, hide loader
+		setLoading(false);
+	  };
 
   // if the user is online
   const networkStatus = () =>{
@@ -43,12 +55,16 @@ function Postbody({type,url,id,sensitive}) {
 		// offline online checker
 		window.addEventListener('online',networkStatus);
 		window.addEventListener('offline',networkStatus);
+		video?.addEventListener('waiting', handleWaiting);
+    	video?.addEventListener('canplaythrough', handleCanPlay);
 		// Remove event listeners when component unmounts
 		return () => {
 		  video?.removeEventListener('loadedmetadata', () => {});
 		  video?.removeEventListener('timeupdate', () => {});
 		  window.addEventListener('offline',networkStatus);
 		  window.addEventListener('online',networkStatus);
+		  video.removeEventListener('waiting', handleWaiting);
+      	  video.removeEventListener('canplay', handleCanPlay);
 		};	
 		}else{
 			return;
@@ -64,7 +80,7 @@ function Postbody({type,url,id,sensitive}) {
 	// play video
 	function play_video(){
 		videoRef.current?.play();
-		
+		console.log(videoRef.readyState);
 		setPlaying(true);
 	}
 	
@@ -122,6 +138,12 @@ function Postbody({type,url,id,sensitive}) {
 			isOnline ?
 			<div className={`w-full h-[300px] object-cover   mb-4 relative`}>
 			<video ref={videoRef} id='video_player' src={url} className='w-full h-full border-none outline-none bg-grey_light dark:bg-dark_overlay'></video>
+			{
+				loading && (
+					<Bubbleloader/>	
+				)
+			}
+			
 			{!playing && (
 			<div onClick={()=> playing ? pause_video() : play_video()} className='absolute top-[40%] left-[40%] text-grey_dark bg-primary w-[60px] h-[60px] flex items-center justify-center text-xl cursor-pointer rounded-[100vh] '><FontAwesomeIcon icon={faPlay}/></div>
 							

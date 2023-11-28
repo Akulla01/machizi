@@ -1,0 +1,30 @@
+
+#bubble1{
+	/* keyframes animation */
+	animation: bubble 2s infinite;
+}
+#bubble2{
+	animation: bubble 2s infinite;
+	animation-delay: 200ms;
+}
+
+#bubble3{
+	animation: bubble 2s infinite;
+	animation-delay: 300ms;
+}
+
+@keyframes bubble{
+	0%{
+		transform:scale(1);
+		background:#FFF;
+	}
+	50%{
+		transform:scale(1.5);
+		background:#05FFC0;
+	}
+	
+	100%{
+		transform:scale(1);
+		background:#FFF;
+	}
+}
