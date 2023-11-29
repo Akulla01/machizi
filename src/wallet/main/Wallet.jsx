@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Walletnav from '../components/Walletnav'
 import Balance from '../components/Balance'
 import Actions from '../components/Actions'
@@ -7,13 +7,15 @@ import Deposit from '../components/Deposit'
 import Withdraw from '../components/Withdraw'
 
 function Wallet() {
+	const [ballance,setBallance] = useState(0.00);
   return (
 	<div className='w-full min-h-screen bg-light_bg dark:bg-dark_bg text-grey_light dark:text-grey_dark pb-10 font-roboto'>
 		<Walletnav/>
 		
 		{/* user account balance */}
 		<div className='w-full my-10 relative'>
-		<Balance/>	
+		<Balance setBallance={setBallance} ballance={ballance}/>
+			
 		<Actions/>
 		</div>
 		
@@ -23,8 +25,8 @@ function Wallet() {
 		</div>
 		
 		<div id='deposit_withdraw'>
-			<Deposit/>
-			<Withdraw/>
+			<Deposit setBallance={setBallance}/>
+			<Withdraw setBallance={setBallance}/>
 		</div>
 		
 	</div>
