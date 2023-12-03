@@ -8,9 +8,8 @@ function Walletnav() {
 	</div>
    <ul className='flex items-center gap-2 font-bold'>
 	<li><a href="#deposit_withdraw">deposit</a></li>
-	<li><a href="#deposit_withdraw">withdraw</a></li>
+	{/* <li><a href="#deposit_withdraw">withdraw</a></li> */}
 	<li><a href="#">transactions</a></li>
-	<li><a href="#">send money</a></li>
 	<li><a href="/">home</a></li>
    </ul>
 	</div>

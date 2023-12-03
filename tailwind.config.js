@@ -6,13 +6,13 @@ export default {
   theme: {
     extend: {},
     colors:{
-      'grey_dark':'#FFF',
+      'grey_dark':'#FFFFFF',
       'grey_light':'#1D1B1B',
       'primary':'#05FFC0',
       'accent':'#118E6F',
       'light_bg':'#FFFFFF',
-      'dark_bg':'#000000',
-      'dark_overlay':'#0f0f0f',
+      'dark_bg':'#0C0C0E',
+      'dark_overlay':'#15161A',
       'light_overlay':'#E5E5E5',
       "overlays":"#080b2856",
       'transparent':'transparent',
