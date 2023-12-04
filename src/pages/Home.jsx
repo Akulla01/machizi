@@ -12,6 +12,8 @@ import Inbuilt from '../adselements/Inbuilt'
 import Offline from '../components/Offline'
 import Online from '../components/Online'
 import logo from "../assets/logo_with_bg.png";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons'
 
 function Home() {
   const post_request = new Post_handler();
@@ -89,7 +91,7 @@ function Home() {
     }
   },[]);
   return (
-	<div div className='w-full min-h-screen bg-light_bg dark:bg-dark_bg overflow-x-clip'>
+	<div div className='w-full min-h-screen bg-light_bg dark:bg-dark_bg overflow-x-clip scroll-smooth'>
     <ToastContainer theme={theme}/>
     {!posts && (
       <div className='w-full min-h-screen bg-light_bg flex items-center justify-center dark:bg-dark_bg'>
@@ -122,7 +124,15 @@ function Home() {
              )}
 
       </div>
-
+          <button 
+          className='bg-primary w-[40px] h-[40px] rounded-[100vh] text-grey_dark fixed bottom-4 right-2' 
+          title='back to top' 
+          onClick={()=>{
+            window.scrollTo(0,0);
+            return () =>window.scrollTo(0,0);
+          }}>
+            <FontAwesomeIcon icon={faArrowUp}/>
+            </button>
         <div className='w-full m-0 md:w-[75%] md:ml-[15%] min-h-screen mb-0 dark:bg-dark_bg dark:shadow'>
           <Followercomponent/>
           {/* reccommeded post first */}
