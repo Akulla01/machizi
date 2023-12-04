@@ -64,7 +64,7 @@ export default function Homenav() {
 						</div>
 				</li>
 				<li>
-				<span onClick={()=>basic.change_theme()} className='text-[12px] sm:text-md bg-grey_dark dark:bg-dark_overlay flex items-center gap-2 hover:bg-grey_dark hover:dark:bg-dark_overlay p-2 cursor-pointer sm:bg-transparent  rounded-2xl active:bg-primary active:text-light_bg '><FontAwesomeIcon icon={basic.theme=='light'?faMoon:faSun}/> <span className='hidden sm:block'>switch</span></span>
+				<span onClick={()=>basic.change_theme()} className='text-[12px] sm:text-md bg-grey_dark dark:bg-dark_overlay flex items-center gap-2 hover:bg-grey_dark hover:dark:bg-dark_overlay p-2 cursor-pointer sm:bg-transparent  rounded-2xl active:bg-primary active:text-light_bg '><FontAwesomeIcon icon={basic.theme=='light'?faMoon:faSun}/> <span className='hidden sm:block'>themes</span></span>
 				</li>
 				<li>
 				<div ref={dropref}>
