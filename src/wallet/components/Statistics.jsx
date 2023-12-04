@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-
+import Walletrequest from "../modules/request.js";
 function Statistics({wallet,setStatistics,setcurrent_page}) {
-	
+	const wallet_request = new Walletrequest();
 	/* 
 	=== PAGES INDEXES===
 	-1 = close the current page and go back to the my-wallet page.the homepage for wallet
@@ -66,9 +66,9 @@ function Statistics({wallet,setStatistics,setcurrent_page}) {
 			var total = wallet?.total_deposit.length+wallet?.total_withdrawal.length;
 			setWallletcount(prev =>({
 				...prev,
-				deposits:wallet?.total_deposit.length,
-				withdrawals:wallet?.total_withdrawal.length,
-				total:total
+				deposits:wallet_request.trim_ballance(wallet?.total_deposit.length),
+				withdrawals:wallet_request.trim_ballance(wallet?.total_withdrawal.length),
+				total:wallet_request.trim_ballance(total)
 				
 			}));
 			// set deposit,withdrawals and transactions
@@ -85,11 +85,11 @@ function Statistics({wallet,setStatistics,setcurrent_page}) {
 	
 	
   return (
-	<div className='w-[90%] h-[300px] shadow-md bg-dark_overlay mx-[2%] rounded-md pt-2'>
+	<div className='w-[90%] pb-4 min-h-[300px] shadow-md dark:bg-dark_overlay mx-[2%] rounded-md pt-2'>
 		<center><h3 className='my-4 text-md'>Your account statistics</h3></center>
-		<div  className='w-full  flex  my-[4rem] mb-4 gap-10 items-center justify-center'>
+		<div  className='w-full  flex  my-[4rem] mb-4 gap-10 items-center justify-center flex-col sm:flex-row'>
 		{/* total deposits */}
-		<div className='border p-2 rounded-md border-grey_dark cursor-pointer' onClick={()=>setpage(0)} >
+		<div className='border p-2 rounded-md border-grey_dark cursor-pointer  shadow-md w-[90%] sm:w-[150px]' onClick={()=>setpage(0)} >
 			<div>
 				<div className='text-xl font-bold'>{walletcount.deposits}</div>
 				<div>
@@ -99,7 +99,7 @@ function Statistics({wallet,setStatistics,setcurrent_page}) {
 		</div>
 		
 		{/* total withdrawals */}
-		<div className='border p-2 rounded-md border-grey_dark cursor-pointer' onClick={()=>setpage(1)} >
+		<div className='border p-2 rounded-md border-grey_dark cursor-pointer shadow-md w-[90%] sm:w-[150px]' onClick={()=>setpage(1)} >
 			<div>
 				<div className='text-xl font-bold'>{walletcount.withdrawals}</div>
 				<div>
@@ -108,7 +108,7 @@ function Statistics({wallet,setStatistics,setcurrent_page}) {
 			</div>
 		</div>
 		{/* total transactions*/}
-		<div className='border p-2 rounded-md border-grey_dark cursor-pointer' onClick={()=>setpage(2)} >
+		<div className='border p-2 rounded-md border-grey_dark cursor-pointer shadow-md w-[90%] sm:w-[150px]' onClick={()=>setpage(2)} >
 			<div>
 				<div className='text-xl font-bold'>{walletcount.total}</div>
 				<div>

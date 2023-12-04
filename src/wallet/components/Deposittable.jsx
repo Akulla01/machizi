@@ -9,7 +9,7 @@ function Deposittable({deposits,setcurrent_page}) {
 	
 	
   return (
-	<div>
+	<div className='w-full overflow-x-scroll xl:overflow-hidden'>
 		{/* when there are no deposits */}
 		{deposits?.length == 0 && (
 			<div>

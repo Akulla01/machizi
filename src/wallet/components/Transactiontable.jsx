@@ -9,7 +9,7 @@ function Transactiontable({transactions,setcurrent_page}) {
 	
 	
   return (
-	<div>
+	<div className='w-full overflow-x-scroll xl:overflow-hidden'>
 		{/* when there are no transactions */}
 		{transactions?.length == 0 && (
 			<div>

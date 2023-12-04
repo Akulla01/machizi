@@ -18,6 +18,7 @@ function Home() {
   const [posts,setPost] = useState(null);
   const [rec_posts,setrec_post] = useState(null);
   const [rec_newpost,setrec_newpost] = useState([]);
+  const[hidewallet,sethidewallet] = useState(localStorage.getItem("hidewallet"));
   const [perpage,setPerpage] = useState(10);
   const[view_non_following,setview_non_following] = useState(false);
   const [newpost,setNewpost] = useState([]);
@@ -51,6 +52,10 @@ function Home() {
   const handle_infinite = () =>{
     if(infinite.reachedBottom()){
       setPerpage(prev =>(prev+1));
+    }
+    if(!hidewallet){
+      localStorage.setItem("hidewallet","true");
+      sethidewallet(true);
     }
   }
   
@@ -108,6 +113,14 @@ function Home() {
       <>
       <div className='fixed top-[-10px] w-full h-[60px] z-10 bg-light_bg dark:bg-dark_bg dark:shadow'>
              <Homenav/> 
+             {!hidewallet && (
+             <div className='w-full min-h-[40px] flex items-center bg-primary justify-center flex-col py-2 text-sm md:text-md p-1'>
+          <h3>🎉 activate your wallet today  <a className='underline' href="my-wallet">click here</a></h3>
+          <span className='my-2 sm:w-[60%]'>wallet will allow you to access premeium features that are being released soon.activate today for minimum  10/= only</span>
+          <p className='my-4 animate-pulse'>scroll to hide</p>
+		      </div>              
+             )}
+
       </div>
 
         <div className='w-full m-0 md:w-[75%] md:ml-[15%] min-h-screen mb-0 dark:bg-dark_bg dark:shadow'>

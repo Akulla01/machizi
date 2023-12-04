@@ -144,10 +144,10 @@ function Profile() {
 
 			</div>
 			<div className='flex items-center justify-center'>
-				<button onClick={()=>setOverlay(true)} className='mx-2 border border-light_bg dark:text-grey_dark text-grey_light text-sm hover:bg-light_bg hover:text-primary font-bold p-2 rounded-md hover:text-primar'><FontAwesomeIcon icon={faEdit}/>  <span className='hidden sm:block'>edit profile</span></button>
-				<button onClick={()=>window.location.href='/create-post'} className='mx-2 border border-light_bg dark:text-grey_dark text-grey_light text-sm hover:bg-light_bg hover:text-primary font-bold p-2 rounded-md hover:text-primar'><FontAwesomeIcon icon={faUpload}/> <span>create post</span></button>
-				<button onClick={()=>navigate('/')} className='mx-2 border border-light_bg dark:text-grey_dark text-grey_light text-sm hover:bg-light_bg hover:text-primary font-bold p-2 rounded-md hover:text-primar'><FontAwesomeIcon icon={faHome}/> <span className='hidden sm:block'>back home</span> </button>
-	<button onClick={()=>window.location.href='/accounts'} className='mx-2 border border-light_bg dark:text-grey_dark text-grey_light text-sm hover:bg-light_bg hover:text-primary font-bold p-2 rounded-md hover:text-primar'><FontAwesomeIcon  icon={faSignOut}/> <span className='hidden sm:block'>switch account</span></button>
+				<button onClick={()=>setOverlay(true)} className='mx-2 border border-light_bg dark:text-grey_dark text-grey_light text-sm hover:bg-accent hover:text-primary font-bold p-2 rounded-md '><FontAwesomeIcon icon={faEdit}/>  <span className='hidden sm:block'>edit profile</span></button>
+				<button onClick={()=>window.location.href='/create-post'} className='mx-2 border border-light_bg dark:text-grey_dark text-grey_light text-sm hover:bg-accent hover:text-primary font-bold p-2 rounded-md'><FontAwesomeIcon icon={faUpload}/> <span>create post</span></button>
+				<button onClick={()=>navigate('/')} className='mx-2 border border-light_bg dark:text-grey_dark text-grey_light text-sm hover:bg-accent hover:text-primary font-bold p-2 rounded-md '><FontAwesomeIcon icon={faHome}/> <span className='hidden sm:block'>back home</span> </button>
+	<button onClick={()=>window.location.href='/accounts'} className='mx-2 border border-light_bg dark:text-grey_dark text-grey_light text-sm hover:bg-accent hover:text-primary font-bold p-2 rounded-md '><FontAwesomeIcon  icon={faSignOut}/> <span className='hidden sm:block'>switch account</span></button>
 			</div>
 		</div>
 		

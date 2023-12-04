@@ -12,7 +12,7 @@ function Postheading({heading,profile,username,time,id}) {
 			{!profile?
 			<Loader/>
 			:
-			<img src={profile} className='w-[40px] h-[40px] rounded-[100vh] bg-grey_light object-cover' alt="" />
+			<img src={profile} className='w-[40px] h-[40px] rounded-[100vh] bg-grey_light object-cover border-2 border-light_overlay' alt="" />
 			}
 			
 			<h3 >

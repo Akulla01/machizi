@@ -9,7 +9,7 @@ function Withdrawalstable({withdrawals,setcurrent_page}) {
 	
 	
   return (
-	<div>
+	<div className='w-full overflow-x-scroll xl:overflow-hidden'>
 		{/* when there are no withdrawals */}
 		{withdrawals?.length == 0 && (
 			<div>

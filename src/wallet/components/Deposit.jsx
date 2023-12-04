@@ -100,7 +100,7 @@ function Deposit({setBallance}) {
 								...prev,
 								topup_amount:e.target.value
 							}))}
-							className='w-[300px] h-[40px] dark:bg-dark_overlay dark:text-grey_dark' 
+							className='sm:w-[300px] border rounded p-2 w-[90%] h-[40px] dark:bg-dark_overlay dark:text-grey_dark' 
 							value={deposit.topup_amount}
 							placeholder='   minimum 10' min={10} />
 							
@@ -113,11 +113,11 @@ function Deposit({setBallance}) {
 								...prev,
 								number:Number(e.target.value)
 							}))}
-							className='w-[300px] h-[40px] dark:bg-dark_overlay dark:text-grey_dark rounded-tl-md rounded-bl-md'
+							className='sm:w-[300px] border rounded p-2 w-[90%] h-[40px] dark:bg-dark_overlay dark:text-grey_dark rounded-tl-md rounded-bl-md'
 							value={deposit.phone_number} 
 							placeholder='  example: 254745000000 ' />
 							
-							<button className='w-[300px] h-[40px] bg-primary text-grey_dark my-4 rounded' onClick={initiateDeposit}>deposit</button>
+							<button className='sm:w-[300px] border p-2 w-[90%] h-[40px] bg-primary text-grey_dark my-4 rounded' onClick={initiateDeposit}>deposit</button>
 						</div>				
 			)
 		}

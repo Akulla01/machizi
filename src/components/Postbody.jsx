@@ -137,7 +137,7 @@ function Postbody({type,url,id,sensitive}) {
 			{
 			isOnline ?
 			<div className={`w-full h-[300px] object-cover   mb-4 relative`}>
-			<video ref={videoRef} id='video_player' src={url} className='w-full h-full border-none outline-none bg-grey_light dark:bg-dark_overlay'></video>
+			<video ref={videoRef} id='video_player' onClick={()=>setPlaying(!playing)} src={url} className='w-full h-full border-none outline-none bg-grey_light dark:bg-dark_overlay'></video>
 			{
 				playing && loading && (
 					<Bubbleloader/>	
