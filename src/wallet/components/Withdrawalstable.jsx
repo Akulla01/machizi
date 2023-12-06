@@ -2,10 +2,6 @@ import React, { useEffect } from 'react'
 
 function Withdrawalstable({withdrawals,setcurrent_page}) {
 	
-	useEffect(()=>{
-		console.log(withdrawals);
-	},[withdrawals]);
-	
 	
 	
   return (

@@ -29,7 +29,7 @@ function Deposit({setBallance}) {
 	}
 	
 	
-	/* if the deposit process is completyly done */
+	/* if the deposit process is completyly done delete request data */
 	useEffect(()=>{
 		if(paymentdone !==null){
 			setBallance(paymentdone);
@@ -43,8 +43,7 @@ function Deposit({setBallance}) {
 	
 	/* check if the stk push has been successfull has been successfull */
 	useEffect(()=>{
-		if(stk_response !== null){
-		console.log(stk_response);	
+		if(stk_response !== null){	
 		// TODO: save client details to the local storage
 		toast.info(stk_response.CustomerMessage);
 		if(stk_response.errorMessage){

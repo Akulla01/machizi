@@ -2,10 +2,6 @@ import React, { useEffect } from 'react'
 
 function Transactiontable({transactions,setcurrent_page}) {
 	
-	useEffect(()=>{
-		console.log(transactions);
-	},[transactions]);
-	
 	
 	
   return (

@@ -2,10 +2,6 @@ import React, { useEffect } from 'react'
 
 function Deposittable({deposits,setcurrent_page}) {
 	
-	useEffect(()=>{
-		console.log(deposits);
-	},[deposits]);
-	
 	
 	
   return (
